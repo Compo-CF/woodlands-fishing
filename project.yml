@@ -26,6 +26,8 @@ targets:
     platform: iOS
     sources:
       - path: WoodlandsFishing
+        excludes:
+          - "Info.plist"
     info:
       path: WoodlandsFishing/Info.plist
       properties:
