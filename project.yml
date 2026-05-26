@@ -1,0 +1,53 @@
+# XcodeGen project spec.
+# Generates WoodlandsFishing.xcodeproj from this YAML.
+# Run `xcodegen generate` on any Mac (or in CI) to (re)create the project.
+# Why XcodeGen: keeps the project file out of git, lets you edit on Windows
+# without breaking pbxproj checksums, and makes CI trivial.
+
+name: WoodlandsFishing
+
+options:
+  bundleIdPrefix: com.compofelice
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    DEVELOPMENT_LANGUAGE: en
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+
+targets:
+  WoodlandsFishing:
+    type: application
+    platform: iOS
+    sources:
+      - path: WoodlandsFishing
+    info:
+      path: WoodlandsFishing/Info.plist
+      properties:
+        CFBundleDisplayName: Woodlands Fishing
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        UILaunchScreen:
+          UIColorName: ""
+        NSLocationWhenInUseUsageDescription: Used to show fishing spots near you and sort by distance.
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIRequiredDeviceCapabilities:
+          - armv7
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.compofelice.WoodlandsFishing
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        # CODE_SIGNING handled per-config (none in CI, manual on submit day)
+        CODE_SIGN_STYLE: Automatic
+        # Fill in your team ID before archiving for App Store:
+        DEVELOPMENT_TEAM: ""
