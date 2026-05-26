@@ -44,6 +44,7 @@ targets:
         ITSAppUsesNonExemptEncryption: false
     settings:
       base:
+        PRODUCT_NAME: WoodlandsFishing
         PRODUCT_BUNDLE_IDENTIFIER: com.compofelice.WoodlandsFishing
         TARGETED_DEVICE_FAMILY: "1"
         SUPPORTS_MACCATALYST: NO
