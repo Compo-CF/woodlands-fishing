@@ -36,3 +36,8 @@ Pods/
 *.cer
 AuthKey_*.p8
 ExportOptions.plist
+
+# Local preview/verification artifacts
+index.html
+verify-map.html
+.claude/launch.json

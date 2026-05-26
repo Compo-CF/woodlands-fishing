@@ -3,16 +3,23 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000001",
       "name": "Lake Woodlands",
-      "latitude": 30.169,
-      "longitude": -95.487,
+      "latitude": 30.166,
+      "longitude": -95.4769,
       "manager": "The Woodlands Township",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["largemouthBass", "channelCatfish", "crappie", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "crappie",
+        "bluegill"
+      ],
       "parkingNotes": "Best public bank access is Northshore Park (2505 Lake Woodlands Dr).",
       "restrictions": null,
       "description": "Central 200-acre lake of The Woodlands. Catch-and-keep allowed. Kayak and SUP rentals at Riva Row and Lake's Edge boathouses.",
@@ -21,16 +28,24 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000002",
       "name": "Lake Paloma",
-      "latitude": 30.082,
-      "longitude": -95.551,
+      "latitude": 30.1438,
+      "longitude": -95.5273,
       "manager": "The Woodlands Township (Creekside Park Village)",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["largemouthBass", "bluegill", "redearSunfish", "crappie", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "redearSunfish",
+        "crappie",
+        "channelCatfish"
+      ],
       "parkingNotes": "Paloma Point Park access. Pier and kayak/paddleboat rentals on site.",
       "restrictions": null,
       "description": "Stocked community lake in Creekside Park. Catch-and-keep allowed.",
@@ -39,16 +54,24 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000003",
       "name": "Bear Branch Reservoir",
-      "latitude": 30.2055,
-      "longitude": -95.532,
+      "latitude": 30.1993,
+      "longitude": -95.5402,
       "manager": "The Woodlands Township (Cochran's Crossing)",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["largemouthBass", "crappie", "spottedGar", "channelCatfish", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "crappie",
+        "spottedGar",
+        "channelCatfish",
+        "bluegill"
+      ],
       "parkingNotes": "Enter via Lakeside Park, 5001 W. Alden Bridge Dr. Marshy banks — kayak recommended.",
       "restrictions": "Game-warden patrolled. Verify TPWD license before fishing.",
       "description": "Largest of the Township-managed lakes outside Lake Woodlands. Catch-and-keep allowed.",
@@ -57,16 +80,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000004",
       "name": "Bear Branch Park Pond",
-      "latitude": 30.1845,
-      "longitude": -95.524,
+      "latitude": 30.1918,
+      "longitude": -95.4947,
       "manager": "The Woodlands Township",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "5205 Research Forest Dr.",
       "restrictions": "Catch-and-release only.",
       "description": "Neighborhood pond at Bear Branch Park.",
@@ -75,16 +104,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000005",
       "name": "Rob Fleming Park Pond",
-      "latitude": 30.086,
-      "longitude": -95.557,
+      "latitude": 30.1453,
+      "longitude": -95.5158,
       "manager": "The Woodlands Township (Creekside)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "6055 Creekside Forest Dr.",
       "restrictions": "Catch-and-release only.",
       "description": "Family-friendly pond at Rob Fleming Park.",
@@ -93,16 +128,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000006",
       "name": "Entry Lake (Cochran's Crossing)",
-      "latitude": 30.186,
-      "longitude": -95.516,
+      "latitude": 30.1778,
+      "longitude": -95.5275,
       "manager": "The Woodlands Township",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["channelCatfish", "largemouthBass", "bluegill"],
+      "species": [
+        "channelCatfish",
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "Woodlands Pkwy at Cochran's Crossing.",
       "restrictions": "Catch-and-release only.",
       "description": "3.3-acre village entry pond.",
@@ -111,16 +152,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000007",
       "name": "Reedy Pond Park",
-      "latitude": 30.1545,
-      "longitude": -95.546,
+      "latitude": 30.1674,
+      "longitude": -95.5091,
       "manager": "The Woodlands Township (Indian Springs)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "7.46-acre park.",
       "restrictions": "Catch-and-release only.",
       "description": "Neighborhood park pond in Indian Springs.",
@@ -129,16 +176,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000008",
       "name": "Deer Rush Pond Park",
-      "latitude": 30.15,
-      "longitude": -95.543,
+      "latitude": 30.1622,
+      "longitude": -95.5137,
       "manager": "The Woodlands Township (Indian Springs)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": null,
       "restrictions": "Catch-and-release only.",
       "description": "Small amenity pond.",
@@ -147,16 +199,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000009",
       "name": "Hidden View Pond Park",
-      "latitude": 30.186,
-      "longitude": -95.521,
+      "latitude": 30.1804,
+      "longitude": -95.5227,
       "manager": "The Woodlands Township (Cochran's Crossing)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": null,
       "restrictions": "Catch-and-release only.",
       "description": "Quiet neighborhood pond.",
@@ -165,16 +222,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000010",
       "name": "Southshore Park (Lake Woodlands south bank)",
-      "latitude": 30.166,
-      "longitude": -95.492,
+      "latitude": 30.1553,
+      "longitude": -95.4846,
       "manager": "The Woodlands Township",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["largemouthBass", "channelCatfish", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "bluegill"
+      ],
       "parkingNotes": "Shoulder parking on Woodlands Pkwy. Access to Lake Woodlands dam area.",
       "restrictions": null,
       "description": "South-side access point for Lake Woodlands.",
@@ -183,16 +246,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000011",
       "name": "Northshore Park (Lake Woodlands north bank)",
-      "latitude": 30.1735,
-      "longitude": -95.487,
+      "latitude": 30.1697,
+      "longitude": -95.4776,
       "manager": "The Woodlands Township",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["largemouthBass", "channelCatfish", "crappie"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "crappie"
+      ],
       "parkingNotes": "2505 Lake Woodlands Dr. Primary public bank-fishing access for Lake Woodlands.",
       "restrictions": null,
       "description": "Park with the best public bank fishing on Lake Woodlands. Kayak put-in available.",
@@ -201,16 +270,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000012",
       "name": "Riva Row / Hughes Landing (Waterway, west of Riva Row)",
-      "latitude": 30.166,
-      "longitude": -95.464,
+      "latitude": 30.1589,
+      "longitude": -95.4649,
       "manager": "The Woodlands Township",
       "waterBodyType": "river",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "Riva Row Boat House; kayak/paddleboat rentals on site.",
       "restrictions": "Fishing PROHIBITED east of Riva Row Boat House to I-45.",
       "description": "Lower Waterway section connecting to Lake Woodlands. Fish only the western stretch.",
@@ -219,16 +294,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000013",
       "name": "Creekwood Park Pond",
-      "latitude": 30.161,
-      "longitude": -95.507,
+      "latitude": 30.1536,
+      "longitude": -95.4973,
       "manager": "The Woodlands Township",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["channelCatfish", "largemouthBass"],
+      "species": [
+        "channelCatfish",
+        "largemouthBass"
+      ],
       "parkingNotes": "Approximate location — verify.",
       "restrictions": "Catch-and-release only.",
       "description": "Hosts annual March fishing derby. Large catfish reported.",
@@ -237,16 +317,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000014",
       "name": "Lake Harrison",
-      "latitude": 30.164,
-      "longitude": -95.475,
+      "latitude": 30.1413,
+      "longitude": -95.4737,
       "manager": "Private (The Woodlands Resort / Grogan's Mill area)",
       "waterBodyType": "lake",
       "access": "privateNoAccess",
-      "permitsRequired": ["none"],
+      "permitsRequired": [
+        "none"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": false,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": null,
       "restrictions": "Mostly private — very limited public bank access.",
       "description": "Shown for awareness. Not recommended as a destination — most of the shoreline is commercial/private.",
@@ -255,16 +340,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000015",
       "name": "W.G. Jones State Forest Ponds",
-      "latitude": 30.228,
-      "longitude": -95.505,
+      "latitude": 30.2309,
+      "longitude": -95.5035,
       "manager": "Texas A&M Forest Service",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "1328 FM 1488, ~1.5 miles west of I-45.",
       "restrictions": "State Forest (NOT a State Park) — license still required. Day-use only.",
       "description": "Two small ponds in W.G. Jones State Forest. Family-friendly bank fishing.",
@@ -273,16 +364,23 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000016",
       "name": "Spring Creek @ Pundt Park",
-      "latitude": 30.059,
-      "longitude": -95.436,
+      "latitude": 30.082,
+      "longitude": -95.3811,
       "manager": "Harris County Precinct 4",
       "waterBodyType": "creek",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["whiteBass", "crappie", "channelCatfish", "largemouthBass"],
+      "species": [
+        "whiteBass",
+        "crappie",
+        "channelCatfish",
+        "largemouthBass"
+      ],
       "parkingNotes": "380-acre park; two stocked ponds plus creek bank access. Primitive canoe launch.",
       "restrictions": null,
       "description": "Best Spring Creek access in the area. Spring white-bass run is the main draw.",
@@ -291,16 +389,23 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000017",
       "name": "Spring Creek @ Jesse H. Jones Park",
-      "latitude": 30.027,
-      "longitude": -95.273,
+      "latitude": 30.0238,
+      "longitude": -95.2943,
       "manager": "Harris County Precinct 4",
       "waterBodyType": "creek",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["whiteBass", "bluegill", "channelCatfish", "largemouthBass"],
+      "species": [
+        "whiteBass",
+        "bluegill",
+        "channelCatfish",
+        "largemouthBass"
+      ],
       "parkingNotes": "Jesse H. Jones Park & Nature Center.",
       "restrictions": "Fishing allowed in Spring Creek ONLY. Park ponds are closed to fishing.",
       "description": "Nature center on Spring Creek. Wade or kayak the creek itself.",
@@ -309,16 +414,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000018",
       "name": "Spring Creek @ Collins Park",
-      "latitude": 30.0395,
-      "longitude": -95.4145,
+      "latitude": 30.0107,
+      "longitude": -95.5052,
       "manager": "Harris County Precinct 4",
       "waterBodyType": "creek",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["whiteBass", "channelCatfish"],
+      "species": [
+        "whiteBass",
+        "channelCatfish"
+      ],
       "parkingNotes": "Near Spring Creek / Cypress Creek confluence area.",
       "restrictions": null,
       "description": "Bank access along Spring Creek.",
@@ -332,11 +442,19 @@
       "manager": "Montgomery County / SJRA",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "trailerRamp",
-      "species": ["largemouthBass", "hybridStripedBass", "channelCatfish", "crappie", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "hybridStripedBass",
+        "channelCatfish",
+        "crappie",
+        "bluegill"
+      ],
       "parkingNotes": "Public day-use park on FM 1097. Free boat ramp.",
       "restrictions": "Largemouth bass: 16\" minimum (vs. 14\" statewide). 5-fish daily bag for all black bass combined. Grass carp catch-and-release only.",
       "description": "Most popular public bank/ramp access on Lake Conroe.",
@@ -350,11 +468,17 @@
       "manager": "US Forest Service (Sam Houston NF)",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "trailerRamp",
-      "species": ["largemouthBass", "channelCatfish", "crappie"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "crappie"
+      ],
       "parkingNotes": "West side of Lake Conroe. Shaded bank fishing.",
       "restrictions": "Same Lake Conroe special bass regs apply.",
       "description": "Sam Houston National Forest recreation area on the west side of Lake Conroe.",
@@ -368,11 +492,17 @@
       "manager": "TPWD / Montgomery County",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": false,
       "boatAccess": "trailerRamp",
-      "species": ["largemouthBass", "channelCatfish", "hybridStripedBass"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "hybridStripedBass"
+      ],
       "parkingNotes": "Two concrete ramps. Free public access. Near Willis.",
       "restrictions": "Same Lake Conroe special bass regs apply.",
       "description": "Free public boat ramp on the east side of Lake Conroe.",
@@ -381,16 +511,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000022",
       "name": "Stubblefield Lake Recreation Area (Lake Conroe)",
-      "latitude": 30.547,
-      "longitude": -95.648,
+      "latitude": 30.5597,
+      "longitude": -95.6377,
       "manager": "US Forest Service",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "trailerRamp",
-      "species": ["largemouthBass", "channelCatfish", "crappie"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "crappie"
+      ],
       "parkingNotes": "Two paved ramps. Small day-use fee.",
       "restrictions": "Same Lake Conroe special bass regs apply.",
       "description": "USFS recreation area at the north end of Lake Conroe.",
@@ -399,16 +535,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000023",
       "name": "Alden Bridge Pond",
-      "latitude": 30.20,
-      "longitude": -95.52,
+      "latitude": 30.2051,
+      "longitude": -95.5408,
       "manager": "The Woodlands Township (Alden Bridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass", "channelCatfish"],
+      "species": [
+        "bluegill",
+        "largemouthBass",
+        "channelCatfish"
+      ],
       "parkingNotes": "Near 7725 Alden Bridge Dr (approximate). Upper and lower ponds with a spillway.",
       "restrictions": "Catch-and-release only.",
       "description": "Township park ponds in the Alden Bridge village.",
@@ -417,16 +559,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000024",
       "name": "Alden Woods Pond",
-      "latitude": 30.20,
-      "longitude": -95.53,
+      "latitude": 30.1996,
+      "longitude": -95.4851,
       "manager": "The Woodlands Township (Alden Bridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": "Alden Bridge village (approximate location).",
       "restrictions": "Catch-and-release only.",
       "description": "Neighborhood Township park pond.",
@@ -435,16 +582,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000025",
       "name": "Spindle Tree Ponds Park",
-      "latitude": 30.16,
-      "longitude": -95.55,
+      "latitude": 30.1786,
+      "longitude": -95.584,
       "manager": "The Woodlands Township (Sterling Ridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": "Sterling Ridge village, near FM 2978 (west edge of box). Fishing plus jogging trail.",
       "restrictions": "Catch-and-release only.",
       "description": "Public park ponds on the western edge of The Woodlands.",
@@ -453,16 +605,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000026",
       "name": "Kayak Ridge Pond Park",
-      "latitude": 30.18,
-      "longitude": -95.54,
+      "latitude": 30.1405,
+      "longitude": -95.5115,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": "Creekside Park village (approximate location).",
       "restrictions": "Catch-and-release only.",
       "description": "Quiet natural-setting park pond in Creekside Park.",
@@ -476,11 +633,16 @@
       "manager": "The Woodlands Township",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": "Approximate location — verify.",
       "restrictions": "Catch-and-release only.",
       "description": "Township catch-and-release pond near Shenandoah.",
@@ -489,16 +651,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000028",
       "name": "Marilyn Edgar Park Pond",
-      "latitude": 30.149,
-      "longitude": -95.445,
+      "latitude": 30.1498,
+      "longitude": -95.4453,
       "manager": "City of Oak Ridge North",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "26531 S Hillside Dr, Oak Ridge North. Open 7am-10pm.",
       "restrictions": "Check posted park rules.",
       "description": "Public city park pond in Oak Ridge North.",
@@ -507,16 +675,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000029",
       "name": "Vision Park Pond",
-      "latitude": 30.18,
-      "longitude": -95.46,
+      "latitude": 30.1904,
+      "longitude": -95.4579,
       "manager": "City of Shenandoah",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "149 Pine Forest Dr, Shenandoah. Half-mile loop trail around the pond. West of I-45.",
       "restrictions": "Check posted park rules.",
       "description": "Public city park with a large pond and walking loop.",
@@ -525,16 +698,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000030",
       "name": "Lake at Springwoods Village Nature Preserve",
-      "latitude": 30.06,
-      "longitude": -95.41,
+      "latitude": 30.0982,
+      "longitude": -95.4538,
       "manager": "Springwoods Village (Spring Creek Greenway)",
       "waterBodyType": "lake",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "crappie"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "crappie"
+      ],
       "parkingNotes": "Morning Dove Bend trailhead, 77389. Gravel-lot trail access.",
       "restrictions": "Alligators present — use caution. Southeast corner of the area near I-45 and the Grand Parkway.",
       "description": "150-acre nature preserve with public trail access and occasional fishing clinics.",
@@ -543,16 +722,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000031",
       "name": "Benders Landing Estates Lakes",
-      "latitude": 30.10,
+      "latitude": 30.1,
       "longitude": -95.45,
       "manager": "Benders Landing Estates HOA",
       "waterBodyType": "lake",
       "access": "privateNoAccess",
-      "permitsRequired": ["none"],
+      "permitsRequired": [
+        "none"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": false,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": null,
       "restrictions": "Residents and their guests only — not open to the public.",
       "description": "Six community lakes including a roughly 72-acre main lake. Shown for awareness; residents-only.",
@@ -561,16 +746,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000032",
       "name": "Auburn Lakes",
-      "latitude": 30.13,
-      "longitude": -95.49,
+      "latitude": 30.1264,
+      "longitude": -95.5073,
       "manager": "Auburn Lakes HOA",
       "waterBodyType": "lake",
       "access": "privateNoAccess",
-      "permitsRequired": ["none"],
+      "permitsRequired": [
+        "none"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": false,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": null,
       "restrictions": "Residents only — HOA-managed.",
       "description": "Three stocked community lakes. Shown for awareness; residents-only.",
@@ -584,11 +774,16 @@
       "manager": "Falls at Imperial Oaks HOA",
       "waterBodyType": "lake",
       "access": "privateNoAccess",
-      "permitsRequired": ["none"],
+      "permitsRequired": [
+        "none"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": false,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": null,
       "restrictions": "Residents only. Fishing dock and non-motorized boating for residents.",
       "description": "100-acre community lake. Shown for awareness; residents-only.",
@@ -597,16 +792,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000034",
       "name": "Harmony Lake",
-      "latitude": 30.10,
+      "latitude": 30.1,
       "longitude": -95.43,
       "manager": "Harmony community (MUD/HOA)",
       "waterBodyType": "lake",
       "access": "privateNoAccess",
-      "permitsRequired": ["none"],
+      "permitsRequired": [
+        "none"
+      ],
       "catchAndReleaseOnly": false,
       "bankFishing": false,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": null,
       "restrictions": "Residents and guests only; non-resident access unconfirmed.",
       "description": "Community amenity lake. Shown for awareness; treat as residents-only.",
@@ -615,16 +815,20 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000035",
       "name": "Cypress Lake",
-      "latitude": 30.205,
-      "longitude": -95.555,
+      "latitude": 30.2172,
+      "longitude": -95.5146,
       "manager": "The Woodlands Township (Alden Bridge)",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass"],
+      "species": [
+        "largemouthBass"
+      ],
       "parkingNotes": "Near 7250 Alden Bridge Dr, 77382 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township lake in the Alden Bridge village.",
@@ -633,16 +837,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000036",
       "name": "Mystic Lake",
-      "latitude": 30.185,
-      "longitude": -95.530,
+      "latitude": 30.197,
+      "longitude": -95.4964,
       "manager": "The Woodlands Township (Cochran's Crossing)",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": "Cochran's Crossing village (approximate location).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt lake in Cochran's Crossing.",
@@ -651,16 +860,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000037",
       "name": "Forest Lake",
-      "latitude": 30.170,
-      "longitude": -95.490,
+      "latitude": 30.1748,
+      "longitude": -95.5048,
       "manager": "The Woodlands Township / HOA",
       "waterBodyType": "lake",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "Woodlands neighborhood pond, 77381 area (approximate — location not precisely pinned).",
       "restrictions": "Catch-and-release only. Roughly 20% of shoreline is publicly accessible; rest is private.",
       "description": "Neighborhood lake with limited public bank access.",
@@ -669,16 +884,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000038",
       "name": "Shadow Lake",
-      "latitude": 30.183,
-      "longitude": -95.527,
+      "latitude": 30.181,
+      "longitude": -95.5073,
       "manager": "The Woodlands Township (Cochran's Crossing)",
       "waterBodyType": "lake",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "Cochran's Crossing (approximate location).",
       "restrictions": "Catch-and-release only. Partial public bank access (~30-40%).",
       "description": "Township lake/marsh in Cochran's Crossing.",
@@ -687,16 +907,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000039",
       "name": "Shadowpoint Pond",
-      "latitude": 30.181,
-      "longitude": -95.525,
+      "latitude": 30.1893,
+      "longitude": -95.5064,
       "manager": "The Woodlands Township (Cochran's Crossing)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "W Shadowpoint Cir, 77381 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Cochran's Crossing.",
@@ -705,12 +930,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000040",
       "name": "Long Lake",
-      "latitude": 30.165,
-      "longitude": -95.460,
+      "latitude": 30.1733,
+      "longitude": -95.4873,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "lake",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -723,16 +950,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000041",
       "name": "Hidden Lake Pond",
-      "latitude": 30.160,
-      "longitude": -95.462,
+      "latitude": 30.1803,
+      "longitude": -95.4953,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "105 S Mill Trace Dr, 77381 (approximate). Concrete bank pad.",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Grogan's Mill.",
@@ -741,16 +974,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000042",
       "name": "Capstone Pond",
-      "latitude": 30.182,
-      "longitude": -95.523,
+      "latitude": 30.1943,
+      "longitude": -95.5124,
       "manager": "The Woodlands Township (Cochran's Crossing)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "155 Capstone Cir, 77381 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Cochran's Crossing.",
@@ -759,16 +998,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000043",
       "name": "Clover Pond",
-      "latitude": 30.162,
-      "longitude": -95.458,
+      "latitude": 30.1817,
+      "longitude": -95.4901,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "channelCatfish", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "bluegill"
+      ],
       "parkingNotes": "178 N Mill Trace Dr, 77381 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Grogan's Mill.",
@@ -777,16 +1022,20 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000044",
       "name": "Cokeberry Pond",
-      "latitude": 30.158,
-      "longitude": -95.455,
+      "latitude": 30.139,
+      "longitude": -95.461,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "kayakCanoe",
-      "species": ["bluegill"],
+      "species": [
+        "bluegill"
+      ],
       "parkingNotes": "S Millbend, Grogan's Mill (approximate).",
       "restrictions": "Catch-and-release only. Limited bank access (~10%), partly gated.",
       "description": "Township pond in Grogan's Mill; sparse fishing.",
@@ -795,16 +1044,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000045",
       "name": "Copper Sage Pond",
-      "latitude": 30.175,
-      "longitude": -95.490,
+      "latitude": 30.1805,
+      "longitude": -95.5302,
       "manager": "The Woodlands Township (Panther Creek)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "Off Kuykendahl Rd, Panther Creek (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Panther Creek.",
@@ -818,11 +1073,18 @@
       "manager": "The Woodlands Township (Panther Creek)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "crappie", "bluegill", "channelCatfish"],
+      "species": [
+        "largemouthBass",
+        "crappie",
+        "bluegill",
+        "channelCatfish"
+      ],
       "parkingNotes": "Off Kuykendahl Rd, Panther Creek (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township retention pond in Panther Creek.",
@@ -831,16 +1093,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000047",
       "name": "Deepdale Pond",
-      "latitude": 30.203,
-      "longitude": -95.545,
+      "latitude": 30.2257,
+      "longitude": -95.5031,
       "manager": "The Woodlands Township (Alden Bridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["channelCatfish", "largemouthBass", "bluegill"],
+      "species": [
+        "channelCatfish",
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "7500 N Windvale Cir, 77382 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Alden Bridge.",
@@ -849,16 +1117,20 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000048",
       "name": "Evergreen Pond",
-      "latitude": 30.100,
-      "longitude": -95.490,
+      "latitude": 30.1,
+      "longitude": -95.49,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill"],
+      "species": [
+        "bluegill"
+      ],
       "parkingNotes": "950 Evergreen Cir, 77389 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond near Creekside/Indian Springs.",
@@ -867,12 +1139,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000049",
       "name": "Mason Pond",
-      "latitude": 30.168,
-      "longitude": -95.468,
+      "latitude": 30.1883,
+      "longitude": -95.4678,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -885,16 +1159,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000050",
       "name": "Meadow Lake Pond",
-      "latitude": 30.180,
-      "longitude": -95.488,
+      "latitude": 30.1684,
+      "longitude": -95.4848,
       "manager": "The Woodlands Township (Panther Creek)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass", "channelCatfish"],
+      "species": [
+        "bluegill",
+        "largemouthBass",
+        "channelCatfish"
+      ],
       "parkingNotes": "9501 N Panther Creek Dr, 77381 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Panther Creek.",
@@ -903,16 +1183,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000051",
       "name": "Marquise Oaks Pond",
-      "latitude": 30.195,
-      "longitude": -95.545,
+      "latitude": 30.2035,
+      "longitude": -95.5652,
       "manager": "The Woodlands Township (Indian Springs)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["bluegill", "largemouthBass"],
+      "species": [
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": "9204 Terramont Dr, 77382 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Indian Springs.",
@@ -921,16 +1206,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000052",
       "name": "Mel Killian Pond",
-      "latitude": 30.155,
-      "longitude": -95.453,
+      "latitude": 30.1127,
+      "longitude": -95.4685,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "187 N Tranquil Path, 77380 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Grogan's Mill.",
@@ -939,16 +1229,23 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000053",
       "name": "Pastoral Pond",
-      "latitude": 30.150,
-      "longitude": -95.450,
+      "latitude": 30.114,
+      "longitude": -95.4828,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "channelCatfish", "bluegill", "crappie"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "bluegill",
+        "crappie"
+      ],
       "parkingNotes": "105 Red Sable Dr, 77380 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township park pond in the Grogan's Point/Grogan's Mill area.",
@@ -957,16 +1254,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000054",
       "name": "Pepperdale Pond",
-      "latitude": 30.180,
-      "longitude": -95.550,
+      "latitude": 30.189,
+      "longitude": -95.5787,
       "manager": "The Woodlands Township (Sterling Ridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "17 N Pentenwell Cir, 77382 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Sterling Ridge.",
@@ -975,12 +1277,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000055",
       "name": "Player Bend Pond",
-      "latitude": 30.186,
-      "longitude": -95.556,
+      "latitude": 30.1955,
+      "longitude": -95.5788,
       "manager": "The Woodlands Township (Sterling Ridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -993,12 +1297,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000056",
       "name": "Somerset Pond",
-      "latitude": 30.172,
-      "longitude": -95.485,
+      "latitude": 30.1826,
+      "longitude": -95.5191,
       "manager": "The Woodlands Township (Panther Creek)",
       "waterBodyType": "pond",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -1011,16 +1317,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000057",
       "name": "Summer Cloud Pond",
-      "latitude": 30.198,
-      "longitude": -95.548,
+      "latitude": 30.2037,
+      "longitude": -95.5173,
       "manager": "The Woodlands Township (Alden Bridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["channelCatfish", "largemouthBass"],
+      "species": [
+        "channelCatfish",
+        "largemouthBass"
+      ],
       "parkingNotes": "Alden Bridge/Sterling Ridge (approximate location).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond near Alden Bridge.",
@@ -1029,16 +1340,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000058",
       "name": "Tamarac Pond",
-      "latitude": 30.179,
-      "longitude": -95.520,
+      "latitude": 30.1539,
+      "longitude": -95.4576,
       "manager": "The Woodlands Township",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "Tamarac Park, off Woodlands Pkwy (approximate). Two ponds.",
       "restrictions": "Catch-and-release only.",
       "description": "Two Township park ponds at Tamarac Park.",
@@ -1047,16 +1363,21 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000059",
       "name": "Terrace Mill Pond",
-      "latitude": 30.184,
-      "longitude": -95.553,
+      "latitude": 30.2037,
+      "longitude": -95.5593,
       "manager": "The Woodlands Township (Sterling Ridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "bluegill"
+      ],
       "parkingNotes": "13 Forest Steppes Ct, 77382 (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township greenbelt pond in Sterling Ridge.",
@@ -1065,16 +1386,20 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000060",
       "name": "Venture Tech Pond",
-      "latitude": 30.170,
+      "latitude": 30.17,
       "longitude": -95.461,
       "manager": "Corporate campus / Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass"],
+      "species": [
+        "largemouthBass"
+      ],
       "parkingNotes": "Huntsman campus, Grogan's Mill (approximate).",
       "restrictions": "Catch-and-release only. Lower pond on a corporate campus; after-hours/weekend access.",
       "description": "Pond on the Huntsman corporate campus in Grogan's Mill.",
@@ -1083,16 +1408,20 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000061",
       "name": "Wedgewood Pond",
-      "latitude": 30.166,
-      "longitude": -95.470,
+      "latitude": 30.1672,
+      "longitude": -95.489,
       "manager": "The Woodlands Township (Grogan's Mill)",
       "waterBodyType": "pond",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass"],
+      "species": [
+        "largemouthBass"
+      ],
       "parkingNotes": "42 Wedgewood Forest Dr, 77381 (approximate). Street parking only.",
       "restrictions": "Catch-and-release only. Street parking only.",
       "description": "Township greenbelt pond in Grogan's Mill.",
@@ -1101,16 +1430,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000062",
       "name": "Timberloch Lake (Lake Covey)",
-      "latitude": 30.164,
-      "longitude": -95.458,
+      "latitude": 30.1585,
+      "longitude": -95.4531,
       "manager": "Corporate office grounds (Town Center/Grogan's Mill)",
       "waterBodyType": "lake",
       "access": "publicLimited",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass", "channelCatfish", "bluegill"],
+      "species": [
+        "largemouthBass",
+        "channelCatfish",
+        "bluegill"
+      ],
       "parkingNotes": "Executive office grounds near Town Center (approximate).",
       "restrictions": "Catch-and-release only. On corporate office grounds; weekend access.",
       "description": "Lake on executive office grounds near Town Center.",
@@ -1119,16 +1454,22 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000063",
       "name": "Cranebrook Park Pond",
-      "latitude": 30.188,
-      "longitude": -95.558,
+      "latitude": 30.1853,
+      "longitude": -95.5709,
       "manager": "The Woodlands Township (Sterling Ridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["channelCatfish", "bluegill", "largemouthBass"],
+      "species": [
+        "channelCatfish",
+        "bluegill",
+        "largemouthBass"
+      ],
       "parkingNotes": "Sterling Ridge (approximate). Fishing docks.",
       "restrictions": "Catch-and-release only.",
       "description": "Township park pond with docks in Sterling Ridge.",
@@ -1137,16 +1478,20 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000064",
       "name": "Kirkpatrick Glen Park Pond",
-      "latitude": 30.190,
-      "longitude": -95.555,
+      "latitude": 30.1994,
+      "longitude": -95.5625,
       "manager": "The Woodlands Township (Sterling Ridge)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
-      "species": ["largemouthBass"],
+      "species": [
+        "largemouthBass"
+      ],
       "parkingNotes": "Sterling Ridge (approximate).",
       "restrictions": "Catch-and-release only.",
       "description": "Township park pond in Sterling Ridge.",
@@ -1155,12 +1500,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000065",
       "name": "Camellia Pond Park",
-      "latitude": 30.102,
-      "longitude": -95.500,
+      "latitude": 30.1518,
+      "longitude": -95.5523,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -1173,12 +1520,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000066",
       "name": "Footbridge Way Pond Park",
-      "latitude": 30.098,
-      "longitude": -95.503,
+      "latitude": 30.1409,
+      "longitude": -95.5413,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -1191,12 +1540,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000067",
       "name": "Hullwood Pond Park",
-      "latitude": 30.104,
-      "longitude": -95.498,
+      "latitude": 30.1415,
+      "longitude": -95.5157,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -1209,12 +1560,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000068",
       "name": "Twin Ponds Park",
-      "latitude": 30.100,
-      "longitude": -95.505,
+      "latitude": 30.1481,
+      "longitude": -95.5532,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "pond",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
@@ -1227,12 +1580,14 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000069",
       "name": "Lake Voyageur Pond Park",
-      "latitude": 30.105,
-      "longitude": -95.495,
+      "latitude": 30.1504,
+      "longitude": -95.538,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "lake",
       "access": "publicOpen",
-      "permitsRequired": ["tpwdFreshwater"],
+      "permitsRequired": [
+        "tpwdFreshwater"
+      ],
       "catchAndReleaseOnly": true,
       "bankFishing": true,
       "boatAccess": "none",
