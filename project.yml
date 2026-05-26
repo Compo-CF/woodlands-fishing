@@ -34,6 +34,7 @@ targets:
         CFBundleDisplayName: Woodlands Fishing
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
+        CFBundleIconName: AppIcon
         UILaunchScreen:
           UIColorName: ""
         NSLocationWhenInUseUsageDescription: Used to show fishing spots near you and sort by distance.
