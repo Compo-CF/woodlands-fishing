@@ -49,5 +49,4 @@ targets:
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         # CODE_SIGNING handled per-config (none in CI, manual on submit day)
         CODE_SIGN_STYLE: Automatic
-        # Fill in your team ID before archiving for App Store:
-        DEVELOPMENT_TEAM: ""
+        DEVELOPMENT_TEAM: 7H5T5AR2X5
