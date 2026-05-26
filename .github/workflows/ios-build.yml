@@ -36,17 +36,7 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
-            build | xcpretty || true
-
-      - name: Build raw (fallback if xcpretty exits 0 on errors)
-        if: failure()
-        run: |
-          xcodebuild \
-            -project WoodlandsFishing.xcodeproj \
-            -scheme WoodlandsFishing \
-            -destination 'generic/platform=iOS Simulator' \
-            -configuration Debug \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGN_IDENTITY="" \
-            build
+            build | xcpretty
+        # NOTE: no '|| true' here — that previously masked all build failures
+        # and let compile errors pass as green. set -o pipefail makes the step
+        # fail if xcodebuild fails even through the xcpretty pipe.
