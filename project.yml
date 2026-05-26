@@ -19,6 +19,8 @@ settings:
     DEVELOPMENT_LANGUAGE: en
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    # Silences the "Traditional headermap style is no longer supported" warning
+    ALWAYS_SEARCH_USER_PATHS: NO
 
 targets:
   WoodlandsFishing:
