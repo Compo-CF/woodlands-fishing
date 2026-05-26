@@ -8,22 +8,66 @@ final class SpotStore {
     var filter = SpotFilter()
     var userLocation: CLLocation?
 
-    init() {
-        load()
+    /// Remote source of truth. Edit `docs/Spots.json` in the repo, push to main,
+    /// and GitHub Pages serves the update — every app picks it up on next launch.
+    /// No app release is needed for data-only changes (new spots, fixed coords).
+    private let remoteURL = URL(string: "https://compo-cf.github.io/woodlands-fishing/Spots.json")!
+
+    /// Where we cache the last successfully fetched remote copy, for offline use.
+    private var cacheURL: URL {
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        return dir.appendingPathComponent("Spots.cache.json")
     }
 
-    func load() {
-        guard let url = Bundle.main.url(forResource: "Spots", withExtension: "json") else {
-            print("Spots.json not found in bundle")
+    init() {
+        loadLocalFirst()
+        Task { await refreshFromRemote() }
+    }
+
+    /// Synchronously load the best local data we have so the UI is never empty:
+    /// prefer the cached remote copy from a previous launch, else the bundled seed.
+    private func loadLocalFirst() {
+        if let cached = try? Data(contentsOf: cacheURL), let decoded = Self.decode(cached) {
+            spots = decoded
             return
         }
-        do {
-            let data = try Data(contentsOf: url)
-            let wrapper = try JSONDecoder().decode(SpotsFile.self, from: data)
-            self.spots = wrapper.spots
-        } catch {
-            print("Failed to decode Spots.json: \(error)")
+        loadBundled()
+    }
+
+    private func loadBundled() {
+        guard let url = Bundle.main.url(forResource: "Spots", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let decoded = Self.decode(data) else {
+            print("Bundled Spots.json missing or invalid")
+            return
         }
+        spots = decoded
+    }
+
+    /// Fetch the latest data from GitHub Pages. On success, update the UI and
+    /// cache to disk for offline use and faster next launch. On any failure
+    /// (offline, timeout, bad payload), silently keep whatever local data we had.
+    @MainActor
+    func refreshFromRemote() async {
+        var request = URLRequest(url: remoteURL)
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        request.timeoutInterval = 10
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let http = response as? HTTPURLResponse,
+                  http.statusCode == 200,
+                  let decoded = Self.decode(data),
+                  !decoded.isEmpty
+            else { return }
+            spots = decoded
+            try? data.write(to: cacheURL, options: .atomic)
+        } catch {
+            // Offline or fetch failed — keep the local data from loadLocalFirst().
+        }
+    }
+
+    private static func decode(_ data: Data) -> [FishingSpot]? {
+        try? JSONDecoder().decode(SpotsFile.self, from: data).spots
     }
 
     var filteredSpots: [FishingSpot] {

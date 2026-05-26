@@ -5,12 +5,9 @@ struct MapTabView: View {
     @Environment(SpotStore.self) private var store
     @Environment(LocationManager.self) private var locationManager
     @State private var selectedSpot: FishingSpot?
-    @State private var position: MapCameraPosition = .region(
-        MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 30.1658, longitude: -95.4613),
-            span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25)
-        )
-    )
+    // .automatic frames whatever spots are currently loaded, so the map adapts
+    // to any geographic coverage without a hardcoded region.
+    @State private var position: MapCameraPosition = .automatic
 
     var body: some View {
         @Bindable var store = store
