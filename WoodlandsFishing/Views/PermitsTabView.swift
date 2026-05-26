@@ -7,7 +7,7 @@ struct PermitsTabView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     PermitSection(
                         title: "Texas Freshwater License",
-                        body: """
+                        text: """
                         Required for anyone 17 or older fishing in public Texas waters. Residents born before January 1, 1931 are exempt.
 
                         Annual freshwater package: $30 resident · $58 non-resident · $12 senior (65+).
@@ -20,7 +20,7 @@ struct PermitsTabView: View {
 
                     PermitSection(
                         title: "The Woodlands Township Ponds",
-                        body: """
+                        text: """
                         The Township does NOT issue its own fishing permit — a state license is enough.
 
                         However, most Township ponds are catch-and-release only. The exceptions where you can keep fish are Lake Woodlands, Lake Paloma, and Bear Branch Reservoir.
@@ -33,7 +33,7 @@ struct PermitsTabView: View {
 
                     PermitSection(
                         title: "Lake Conroe (SJRA)",
-                        body: """
+                        text: """
                         Standard TPWD license required — no extra SJRA permit.
 
                         Special regulations: largemouth bass 16″ minimum (vs. 14″ statewide). 5-fish daily bag for all black bass combined. Triploid grass carp must be released immediately.
@@ -44,7 +44,7 @@ struct PermitsTabView: View {
 
                     PermitSection(
                         title: "W.G. Jones State Forest",
-                        body: """
+                        text: """
                         Two small ponds on FM 1488. Because this is a State Forest (not a State Park), the in-park license exemption does NOT apply — a standard TPWD freshwater license is required.
                         """,
                         linkTitle: "W.G. Jones State Forest",
@@ -65,7 +65,7 @@ struct PermitsTabView: View {
 
 private struct PermitSection: View {
     let title: String
-    let body: String
+    let text: String
     let linkTitle: String
     let linkURL: String
 
@@ -73,7 +73,7 @@ private struct PermitSection: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.title3.weight(.semibold))
-            Text(body)
+            Text(text)
                 .font(.body)
             if let url = URL(string: linkURL) {
                 Link(linkTitle, destination: url)
