@@ -14,6 +14,7 @@ FIXES = {
     "029": [30.1889, -95.4564],  # Vision Park Pond: SE to center of water
     "061": [30.1672, -95.4905],  # Wedgewood Pond: west to center of water
     "050": [30.1699, -95.4863],  # Meadow Lake Pond: NW to water site
+    "068": [30.1441, -95.5532],  # Twin Ponds Park: move south
 }
 
 doc = json.loads(spots_path.read_text(encoding="utf-8"))
