@@ -33,7 +33,7 @@ targets:
     info:
       path: WoodlandsFishing/Info.plist
       properties:
-        CFBundleDisplayName: Woodlands Fishing
+        CFBundleDisplayName: WFG
         CFBundleShortVersionString: "1.1"
         CFBundleVersion: "3"
         CFBundleIconName: AppIcon
