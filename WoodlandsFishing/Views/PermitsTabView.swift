@@ -51,6 +51,8 @@ struct PermitsTabView: View {
                         linkURL: "https://tfsweb.tamu.edu/about/state-forests-and-arboretums/wg-jones-state-forest/"
                     )
 
+                    SupportFooter()
+
                     Text("Rules change. Always verify with the official source before fishing.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
@@ -59,6 +61,31 @@ struct PermitsTabView: View {
                 .padding()
             }
             .navigationTitle("Permits & Rules")
+        }
+    }
+}
+
+private struct SupportFooter: View {
+    var body: some View {
+        Link(destination: URL(string: "https://ko-fi.com/subtlefoodie")!) {
+            HStack(spacing: 12) {
+                Image(systemName: "heart.fill")
+                    .foregroundStyle(.pink)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Support the project")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.primary)
+                    Text("Tip via Ko-fi — keeps the app free and updated")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "arrow.up.right.square")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(14)
+            .background(Color.pink.opacity(0.10), in: .rect(cornerRadius: 12))
         }
     }
 }

@@ -1,0 +1,31 @@
+import SwiftUI
+import GoogleMobileAds
+
+/// Thin SwiftUI wrapper around Google Mobile Ads' UIKit BannerView.
+/// Sized to the standard 320x50 banner. Loads an ad on appear and silently
+/// no-ops on failure so the rest of the UI is never blocked.
+struct BannerAdView: UIViewRepresentable {
+    let adUnitID: String
+
+    func makeUIView(context: Context) -> BannerView {
+        let banner = BannerView(adSize: AdSizeBanner)
+        banner.adUnitID = adUnitID
+        banner.rootViewController = Self.topViewController()
+        banner.load(Request())
+        return banner
+    }
+
+    func updateUIView(_ uiView: BannerView, context: Context) {
+        // Banner is one-shot per appearance; no state to push.
+    }
+
+    private static func topViewController() -> UIViewController? {
+        guard
+            let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let window = scene.windows.first(where: \.isKeyWindow)
+        else { return nil }
+        var top = window.rootViewController
+        while let presented = top?.presentedViewController { top = presented }
+        return top
+    }
+}
