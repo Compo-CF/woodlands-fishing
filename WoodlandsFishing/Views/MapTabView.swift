@@ -40,7 +40,7 @@ struct MapTabView: View {
                     locationManager.requestPermission()
                 }
             }
-            .navigationTitle("Woodlands Fishing")
+            .navigationTitle("Woodlands Fishing Guide")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
