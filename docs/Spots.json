@@ -1560,8 +1560,8 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000068",
       "name": "Twin Ponds Park",
-      "latitude": 30.147,
-      "longitude": -95.5532,
+      "latitude": 30.145678819120402,
+      "longitude": -95.55309776842728,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "pond",
       "access": "publicOpen",
@@ -1580,8 +1580,8 @@
     {
       "id": "A1B2C3D4-0000-4000-A000-000000000069",
       "name": "Lake Voyageur Pond Park",
-      "latitude": 30.1504,
-      "longitude": -95.538,
+      "latitude": 30.149841641969278,
+      "longitude": -95.53659855373802,
       "manager": "The Woodlands Township (Creekside Park)",
       "waterBodyType": "lake",
       "access": "publicOpen",

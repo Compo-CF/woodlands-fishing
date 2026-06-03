@@ -15,7 +15,8 @@ FIXES = {
     "061": [30.1672, -95.4905],   # Wedgewood Pond: west to center of water
     # Round 2 (after first satellite review):
     "049": [30.1873, -95.4678],   # Mason Pond: move south (overshot the prior +north move)
-    "068": [30.1470, -95.5532],   # Twin Ponds Park: slightly north (from prior south move)
+    "068": [30.145678819120402, -95.55309776842728],  # Twin Ponds Park: EXACT Google Maps coord
+    "069": [30.149841641969278, -95.53659855373802],  # Lake Voyageur Pond Park: EXACT Google Maps coord
     "018": [30.0450, -95.4700],   # Spring Creek @ Collins Park: best-effort (was 30.0107)
     "033": [30.1200, -95.4350],   # Lake Holcomb: move west
     "039": [30.1865, -95.5040],   # Shadowpoint Pond: move SE
