@@ -1,21 +1,21 @@
 import SwiftUI
 import GoogleMobileAds
 
-/// Thin SwiftUI wrapper around Google Mobile Ads' UIKit BannerView.
+/// Thin SwiftUI wrapper around Google Mobile Ads' UIKit GADBannerView.
 /// Sized to the standard 320x50 banner. Loads an ad on appear and silently
 /// no-ops on failure so the rest of the UI is never blocked.
 struct BannerAdView: UIViewRepresentable {
     let adUnitID: String
 
-    func makeUIView(context: Context) -> BannerView {
-        let banner = BannerView(adSize: AdSizeBanner)
+    func makeUIView(context: Context) -> GADBannerView {
+        let banner = GADBannerView(adSize: GADAdSizeBanner)
         banner.adUnitID = adUnitID
         banner.rootViewController = Self.topViewController()
-        banner.load(Request())
+        banner.load(GADRequest())
         return banner
     }
 
-    func updateUIView(_ uiView: BannerView, context: Context) {
+    func updateUIView(_ uiView: GADBannerView, context: Context) {
         // Banner is one-shot per appearance; no state to push.
     }
 

@@ -10,7 +10,7 @@ struct WoodlandsFishingApp: App {
     init() {
         // Initialize Google Mobile Ads SDK. Ads start loading immediately;
         // the BannerAdView call sites kick off individual requests when shown.
-        MobileAds.shared.start(completionHandler: nil)
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
 
     var body: some Scene {
