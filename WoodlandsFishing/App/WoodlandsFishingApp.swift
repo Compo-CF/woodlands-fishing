@@ -21,12 +21,23 @@ struct WoodlandsFishingApp: App {
                 .onChange(of: locationManager.location) { _, newValue in
                     store.userLocation = newValue
                 }
-                .task {
-                    // Request App Tracking Transparency permission, but only
-                    // after the user has seen the app for a second. Apple
-                    // dislikes apps that slam users with system prompts on
-                    // launch, and ads still serve (non-personalized) if denied.
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                .task(id: locationManager.authorizationStatus) {
+                    // Chain the App Tracking Transparency request to fire AFTER
+                    // the location-permission prompt is resolved. iOS 17/18
+                    // suppresses one system prompt when another is already up,
+                    // and the map's location prompt fires first — so a pure
+                    // time-based ATT request gets silently dropped on first
+                    // launch. Sequencing them via .task(id:) on the location
+                    // authorization status guarantees the ATT prompt actually
+                    // appears.
+                    //
+                    // Flow on first launch:
+                    //   1. authorizationStatus == .notDetermined → early return
+                    //   2. user responds to the location prompt
+                    //   3. authorizationStatus changes → .task(id:) re-fires
+                    //   4. brief breathing room, then ATT prompt appears
+                    guard locationManager.authorizationStatus != .notDetermined else { return }
+                    try? await Task.sleep(nanoseconds: 700_000_000)
                     if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
                         _ = await ATTrackingManager.requestTrackingAuthorization()
                     }

@@ -42,7 +42,7 @@ targets:
       properties:
         CFBundleDisplayName: WFG
         CFBundleShortVersionString: "1.3"
-        CFBundleVersion: "6"
+        CFBundleVersion: "7"
         CFBundleIconName: AppIcon
         UILaunchScreen:
           UIColorName: ""
