@@ -4,6 +4,7 @@ import SwiftUI
 /// Lists version, support / Ko-fi link, contact, GitHub, privacy policy.
 struct AboutSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var showingOnboardingReplay = false
 
     private var versionString: String {
         let v = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
@@ -17,6 +18,7 @@ struct AboutSheet: View {
                 VStack(spacing: 24) {
                     header
                     linksCard
+                    showIntroButton
                     footer
                 }
                 .padding(.vertical, 24)
@@ -29,6 +31,28 @@ struct AboutSheet: View {
                     Button("Done") { dismiss() }
                 }
             }
+            .sheet(isPresented: $showingOnboardingReplay) {
+                OnboardingSheet()
+            }
+        }
+    }
+
+    private var showIntroButton: some View {
+        Button {
+            showingOnboardingReplay = true
+        } label: {
+            HStack {
+                Image(systemName: "sparkles")
+                Text("Show app intro again")
+                    .font(.subheadline.weight(.medium))
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(14)
+            .background(Color.secondary.opacity(0.10), in: .rect(cornerRadius: 12))
+            .foregroundStyle(.primary)
         }
     }
 

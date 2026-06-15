@@ -3,6 +3,8 @@ import MapKit
 
 struct SpotDetailView: View {
     let spot: FishingSpot
+    @Environment(UserDataStore.self) private var userData
+    @State private var showingLogVisit = false
 
     var body: some View {
         ScrollView {
@@ -12,12 +14,29 @@ struct SpotDetailView: View {
                 permitBlock
                 infoBlock
                 directionsButton
+                visitsBlock
                 sourceLink
             }
             .padding()
         }
         .navigationTitle(spot.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    userData.toggleFavorite(spot.id)
+                } label: {
+                    Image(systemName: userData.isFavorite(spot.id) ? "heart.fill" : "heart")
+                        .foregroundStyle(.pink)
+                        .font(.title3)
+                }
+                .accessibilityLabel(userData.isFavorite(spot.id) ? "Remove from favorites" : "Add to favorites")
+            }
+        }
+        .sheet(isPresented: $showingLogVisit) {
+            LogVisitSheet(spot: spot)
+                .environment(userData)
+        }
     }
 
     private var mapSnippet: some View {
@@ -48,6 +67,11 @@ struct SpotDetailView: View {
                     .foregroundStyle(.orange)
             }
             Spacer()
+            if let last = userData.lastVisit(for: spot.id) {
+                Text("Last fished \(last.date.formatted(.relative(presentation: .named)))")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
     }
 
@@ -119,6 +143,51 @@ struct SpotDetailView: View {
                 .font(.headline)
         }
         .disabled(spot.access == .privateNoAccess)
+    }
+
+    private var visitsBlock: some View {
+        let visits = userData.visits(for: spot.id)
+        return VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Label("Your visits", systemImage: "calendar")
+                    .font(.headline)
+                Spacer()
+                Button {
+                    showingLogVisit = true
+                } label: {
+                    Label("Log visit", systemImage: "plus.circle.fill")
+                        .font(.subheadline.weight(.semibold))
+                }
+            }
+            if visits.isEmpty {
+                Text("No visits logged yet. Tap Log visit after you fish here.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            } else {
+                ForEach(visits.prefix(5)) { visit in
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(visit.date.formatted(date: .abbreviated, time: .omitted))
+                            .font(.subheadline.weight(.medium))
+                        if !visit.note.isEmpty {
+                            Text(visit.note)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 12)
+                    .background(Color.secondary.opacity(0.08), in: .rect(cornerRadius: 8))
+                }
+                if visits.count > 5 {
+                    Text("+ \(visits.count - 5) more")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+        .padding()
+        .background(Color.secondary.opacity(0.1), in: .rect(cornerRadius: 12))
     }
 
     @ViewBuilder

@@ -2,12 +2,13 @@ import SwiftUI
 
 struct ListTabView: View {
     @Environment(SpotStore.self) private var store
+    @Environment(UserDataStore.self) private var userData
 
     var body: some View {
         @Bindable var store = store
         NavigationStack {
             List {
-                ForEach(store.spotsSortedByDistance) { spot in
+                ForEach(store.sortedSpots(favoriteIDs: userData.favoriteSpotIDs)) { spot in
                     NavigationLink(value: spot) {
                         SpotRow(spot: spot)
                     }

@@ -70,12 +70,21 @@ final class SpotStore {
         try? JSONDecoder().decode(SpotsFile.self, from: data).spots
     }
 
-    var filteredSpots: [FishingSpot] {
+    /// Filter the spots. Pass the user's favorite IDs so the favorites chip
+    /// can act on them — favorites live in UserDataStore, not SpotStore, so
+    /// they're injected here at the call site.
+    func filteredSpots(favoriteIDs: Set<UUID> = []) -> [FishingSpot] {
         spots.filter { spot in
             if filter.publicOnly && spot.access != .publicOpen { return false }
             if filter.keepFishOnly && spot.catchAndReleaseOnly { return false }
             if filter.bankOnly && !spot.bankFishing { return false }
             if filter.boatOnly && spot.boatAccess == .none { return false }
+            if filter.favoritesOnly && !favoriteIDs.contains(spot.id) { return false }
+            if !filter.selectedSpecies.isEmpty {
+                if Set(spot.species).isDisjoint(with: filter.selectedSpecies) {
+                    return false
+                }
+            }
             if !filter.searchText.isEmpty,
                !spot.name.localizedCaseInsensitiveContains(filter.searchText) {
                 return false
@@ -84,9 +93,11 @@ final class SpotStore {
         }
     }
 
-    var spotsSortedByDistance: [FishingSpot] {
-        guard let userLocation else { return filteredSpots }
-        return filteredSpots.sorted {
+    /// Filtered spots sorted by distance from the user (if known).
+    func sortedSpots(favoriteIDs: Set<UUID> = []) -> [FishingSpot] {
+        let filtered = filteredSpots(favoriteIDs: favoriteIDs)
+        guard let userLocation else { return filtered }
+        return filtered.sorted {
             $0.distance(from: userLocation) < $1.distance(from: userLocation)
         }
     }
@@ -97,6 +108,8 @@ struct SpotFilter {
     var keepFishOnly: Bool = false
     var bankOnly: Bool = false
     var boatOnly: Bool = false
+    var favoritesOnly: Bool = false
+    var selectedSpecies: Set<Species> = []
     var searchText: String = ""
 }
 

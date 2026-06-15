@@ -4,6 +4,7 @@ import MapKit
 struct MapTabView: View {
     @Environment(SpotStore.self) private var store
     @Environment(LocationManager.self) private var locationManager
+    @Environment(UserDataStore.self) private var userData
     @State private var selectedSpot: FishingSpot?
     @State private var showingAbout = false
     // .automatic frames whatever spots are currently loaded, so the map adapts
@@ -16,8 +17,8 @@ struct MapTabView: View {
         @Bindable var store = store
         NavigationStack {
             Map(position: $position, selection: $selectedSpot) {
-                ForEach(store.filteredSpots) { spot in
-                    Marker(spot.name, systemImage: "fish.fill", coordinate: spot.coordinate)
+                ForEach(store.filteredSpots(favoriteIDs: userData.favoriteSpotIDs)) { spot in
+                    Marker(spot.name, systemImage: userData.isFavorite(spot.id) ? "heart.fill" : "fish.fill", coordinate: spot.coordinate)
                         .tint(spot.access.pinColor)
                         .tag(spot)
                 }

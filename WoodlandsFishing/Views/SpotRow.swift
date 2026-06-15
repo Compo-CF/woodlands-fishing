@@ -4,6 +4,7 @@ import CoreLocation
 struct SpotRow: View {
     let spot: FishingSpot
     @Environment(SpotStore.self) private var store
+    @Environment(UserDataStore.self) private var userData
 
     var body: some View {
         HStack(spacing: 12) {
@@ -11,8 +12,15 @@ struct SpotRow: View {
                 .fill(spot.access.pinColor)
                 .frame(width: 10, height: 10)
             VStack(alignment: .leading, spacing: 2) {
-                Text(spot.name)
-                    .font(.headline)
+                HStack(spacing: 6) {
+                    Text(spot.name)
+                        .font(.headline)
+                    if userData.isFavorite(spot.id) {
+                        Image(systemName: "heart.fill")
+                            .font(.caption2)
+                            .foregroundStyle(.pink)
+                    }
+                }
                 HStack(spacing: 6) {
                     Text(spot.manager)
                         .font(.caption)
