@@ -6,6 +6,7 @@ import AppTrackingTransparency
 struct WoodlandsFishingApp: App {
     @State private var store = SpotStore()
     @State private var locationManager = LocationManager()
+    @State private var userData = UserDataStore()
 
     init() {
         // Initialize Google Mobile Ads SDK. Ads start loading immediately;
@@ -18,6 +19,7 @@ struct WoodlandsFishingApp: App {
             ContentView()
                 .environment(store)
                 .environment(locationManager)
+                .environment(userData)
                 .onChange(of: locationManager.location) { _, newValue in
                     store.userLocation = newValue
                 }
