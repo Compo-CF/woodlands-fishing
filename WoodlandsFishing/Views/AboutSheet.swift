@@ -5,6 +5,7 @@ import SwiftUI
 struct AboutSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingOnboardingReplay = false
+    @State private var showingSubmitSpot = false
 
     private var versionString: String {
         let v = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
@@ -18,6 +19,7 @@ struct AboutSheet: View {
                 VStack(spacing: 24) {
                     header
                     linksCard
+                    suggestSpotButton
                     showIntroButton
                     footer
                 }
@@ -34,6 +36,29 @@ struct AboutSheet: View {
             .sheet(isPresented: $showingOnboardingReplay) {
                 OnboardingSheet()
             }
+            .sheet(isPresented: $showingSubmitSpot) {
+                SubmitSpotSheet()
+            }
+        }
+    }
+
+    private var suggestSpotButton: some View {
+        Button {
+            showingSubmitSpot = true
+        } label: {
+            HStack {
+                Image(systemName: "plus.circle.fill")
+                    .foregroundStyle(.green)
+                Text("Suggest a missing spot")
+                    .font(.subheadline.weight(.medium))
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(14)
+            .background(Color.green.opacity(0.10), in: .rect(cornerRadius: 12))
+            .foregroundStyle(.primary)
         }
     }
 

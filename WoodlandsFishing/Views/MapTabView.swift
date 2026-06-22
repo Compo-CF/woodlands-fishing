@@ -1,5 +1,4 @@
 import SwiftUI
-import MapKit
 
 struct MapTabView: View {
     @Environment(SpotStore.self) private var store
@@ -7,28 +6,18 @@ struct MapTabView: View {
     @Environment(UserDataStore.self) private var userData
     @State private var selectedSpot: FishingSpot?
     @State private var showingAbout = false
-    // .automatic frames whatever spots are currently loaded, so the map adapts
-    // to any geographic coverage without a hardcoded region.
-    @State private var position: MapCameraPosition = .automatic
 
     private let bannerAdUnitID = "ca-app-pub-1927040492403163/4580765066"
 
     var body: some View {
         @Bindable var store = store
         NavigationStack {
-            Map(position: $position, selection: $selectedSpot) {
-                ForEach(store.filteredSpots(favoriteIDs: userData.favoriteSpotIDs)) { spot in
-                    Marker(spot.name, systemImage: userData.isFavorite(spot.id) ? "heart.fill" : "fish.fill", coordinate: spot.coordinate)
-                        .tint(spot.access.pinColor)
-                        .tag(spot)
-                }
-                UserAnnotation()
-            }
-            .mapControls {
-                MapUserLocationButton()
-                MapCompass()
-                MapScaleView()
-            }
+            ClusteredMapView(
+                spots: store.filteredSpots(favoriteIDs: userData.favoriteSpotIDs),
+                favoriteIDs: userData.favoriteSpotIDs,
+                selectedSpot: $selectedSpot
+            )
+            .ignoresSafeArea(edges: .horizontal)
             .safeAreaInset(edge: .top) {
                 FilterBar(filter: $store.filter)
                     .background(.thinMaterial)
