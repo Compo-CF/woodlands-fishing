@@ -11,6 +11,7 @@ struct SpotDetailView: View {
             VStack(alignment: .leading, spacing: 16) {
                 mapSnippet
                 accessBadge
+                WeatherCard(latitude: spot.latitude, longitude: spot.longitude)
                 permitBlock
                 infoBlock
                 directionsButton

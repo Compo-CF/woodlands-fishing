@@ -41,8 +41,8 @@ targets:
       path: WoodlandsFishing/Info.plist
       properties:
         CFBundleDisplayName: WFG
-        CFBundleShortVersionString: "1.4"
-        CFBundleVersion: "8"
+        CFBundleShortVersionString: "1.5"
+        CFBundleVersion: "9"
         CFBundleIconName: AppIcon
         UILaunchScreen:
           UIColorName: ""
