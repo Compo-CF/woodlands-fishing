@@ -1,18 +1,23 @@
 import Foundation
 import Observation
 
-/// User-specific per-device state: favorites, fishing visit log, and the
-/// has-seen-onboarding flag. Persisted to UserDefaults — no backend, no
-/// account, the data stays on the user's device.
+/// User-specific per-device state: favorites, fishing visit log, the
+/// has-seen-onboarding flag, and lifetime/prompt counters. Persisted to
+/// UserDefaults — no backend, no account, the data stays on the user's
+/// device.
 @Observable
 final class UserDataStore {
     var favoriteSpotIDs: Set<UUID> = []
     var visits: [SpotVisit] = []
+    var appLaunches: Int = 0
+    var kofiPromptLastShown: Date?
 
     private let defaults = UserDefaults.standard
     private let favoritesKey = "favorites.v1"
     private let visitsKey = "visits.v1"
     private let onboardingKey = "hasSeenOnboarding.v1"
+    private let appLaunchesKey = "appLaunches.v1"
+    private let kofiLastShownKey = "kofiPromptLastShown.v1"
 
     init() {
         load()
@@ -62,6 +67,32 @@ final class UserDataStore {
         set { defaults.set(newValue, forKey: onboardingKey) }
     }
 
+    // MARK: - Launch counter & Ko-fi prompt
+
+    /// Increment the lifetime launch counter. Caller (ContentView) guards
+    /// against double-counting within a single view lifecycle.
+    func recordAppLaunch() {
+        appLaunches += 1
+        defaults.set(appLaunches, forKey: appLaunchesKey)
+    }
+
+    /// Whether the Ko-fi support prompt is eligible to show on this launch.
+    /// Requires the user to be engaged (10+ launches OR 2+ visits logged)
+    /// AND at least 45 days since the last time it was shown.
+    var shouldShowKofiPrompt: Bool {
+        guard appLaunches >= 10 || visits.count >= 2 else { return false }
+        if let last = kofiPromptLastShown {
+            let daysSince = Calendar.current.dateComponents([.day], from: last, to: .now).day ?? 0
+            return daysSince >= 45
+        }
+        return true
+    }
+
+    func markKofiPromptShown() {
+        kofiPromptLastShown = .now
+        defaults.set(kofiPromptLastShown, forKey: kofiLastShownKey)
+    }
+
     // MARK: - Persistence
 
     private func load() {
@@ -73,6 +104,8 @@ final class UserDataStore {
            let arr = try? JSONDecoder().decode([SpotVisit].self, from: data) {
             visits = arr
         }
+        appLaunches = defaults.integer(forKey: appLaunchesKey)
+        kofiPromptLastShown = defaults.object(forKey: kofiLastShownKey) as? Date
     }
 
     private func saveFavorites() {

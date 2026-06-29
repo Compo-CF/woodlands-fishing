@@ -46,8 +46,22 @@ struct WeatherCard: View {
                     .font(.caption2.weight(.semibold))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
-                Text(snap.summary)
-                    .font(.subheadline.weight(.medium))
+                HStack(spacing: 6) {
+                    Text("\(Int(snap.temperatureF.rounded()))°F")
+                    Text("·").foregroundStyle(.tertiary)
+                    Text(snap.conditionLabel)
+                    Text("·").foregroundStyle(.tertiary)
+                    // Arrow points the direction the wind is GOING (180° from
+                    // the meteorological "from" direction). Wind from north
+                    // (0°) blows south, so arrow.up rotated 180° points down.
+                    Image(systemName: "arrow.up")
+                        .font(.caption.weight(.semibold))
+                        .rotationEffect(.degrees(Double(snap.windDirectionDegrees) + 180))
+                    Text("\(Int(snap.windMph.rounded())) mph \(snap.windCardinal)")
+                }
+                .font(.subheadline.weight(.medium))
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(snap.summary)
                 Text("Updated \(fetchedAt.formatted(date: .omitted, time: .shortened))")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
