@@ -29,6 +29,10 @@ enum WeatherService {
         ]
         var request = URLRequest(url: components.url!)
         request.timeoutInterval = 8
+        // Revalidate against the origin on every fetch so we don't serve a
+        // stale cached response — Open-Meteo returns Cache-Control: max-age=900
+        // which the system URL cache otherwise honors silently.
+        request.cachePolicy = .reloadRevalidatingCacheData
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
             throw WeatherError.badResponse

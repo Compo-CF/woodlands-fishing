@@ -1,36 +1,41 @@
 import SwiftUI
 
 /// Compact weather card shown on the spot detail screen. Fetches current
-/// conditions from Open-Meteo on appear. Silently hides itself if the
-/// network is unavailable — fishing apps don't need a fail loudly here.
+/// conditions from Open-Meteo on appear and again whenever the parent
+/// refresh token changes (pull-to-refresh on the spot detail). Silently
+/// hides itself if the network is unavailable — fishing apps don't need to
+/// fail loudly here.
 struct WeatherCard: View {
     let latitude: Double
     let longitude: Double
+    let refreshToken: UUID
 
     @State private var snapshot: WeatherService.Snapshot?
+    @State private var fetchedAt: Date?
     @State private var didFail = false
 
     var body: some View {
         Group {
-            if let snapshot {
-                loaded(snapshot)
+            if let snapshot, let fetchedAt {
+                loaded(snapshot, fetchedAt: fetchedAt)
             } else if didFail {
-                // Quiet failure — no card.
                 EmptyView()
             } else {
                 placeholder
             }
         }
-        .task {
+        .task(id: refreshToken) {
             do {
                 snapshot = try await WeatherService.fetch(latitude: latitude, longitude: longitude)
+                fetchedAt = .now
+                didFail = false
             } catch {
                 didFail = true
             }
         }
     }
 
-    private func loaded(_ snap: WeatherService.Snapshot) -> some View {
+    private func loaded(_ snap: WeatherService.Snapshot, fetchedAt: Date) -> some View {
         HStack(spacing: 14) {
             Image(systemName: snap.conditionSymbol)
                 .font(.title2)
@@ -43,6 +48,9 @@ struct WeatherCard: View {
                     .textCase(.uppercase)
                 Text(snap.summary)
                     .font(.subheadline.weight(.medium))
+                Text("Updated \(fetchedAt.formatted(date: .omitted, time: .shortened))")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
             }
             Spacer()
         }

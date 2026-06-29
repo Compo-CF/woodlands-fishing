@@ -5,13 +5,14 @@ struct SpotDetailView: View {
     let spot: FishingSpot
     @Environment(UserDataStore.self) private var userData
     @State private var showingLogVisit = false
+    @State private var weatherRefreshToken = UUID()
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 mapSnippet
                 accessBadge
-                WeatherCard(latitude: spot.latitude, longitude: spot.longitude)
+                WeatherCard(latitude: spot.latitude, longitude: spot.longitude, refreshToken: weatherRefreshToken)
                 permitBlock
                 infoBlock
                 directionsButton
@@ -19,6 +20,12 @@ struct SpotDetailView: View {
                 sourceLink
             }
             .padding()
+        }
+        .refreshable {
+            weatherRefreshToken = UUID()
+            // Hold the spinner long enough that the new fetch lands while
+            // it's still spinning — typical Open-Meteo round-trip is ~400ms.
+            try? await Task.sleep(for: .seconds(0.7))
         }
         .navigationTitle(spot.name)
         .navigationBarTitleDisplayMode(.inline)
