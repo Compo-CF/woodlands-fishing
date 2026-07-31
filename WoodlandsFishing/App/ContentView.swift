@@ -6,9 +6,8 @@ struct ContentView: View {
     @State private var selectedTab: Int = 0
     @State private var showingOnboarding = false
     @State private var showingKofiPrompt = false
+    @State private var showingTipJar = false
     @State private var hasRecordedLaunch = false
-
-    private let kofiURL = URL(string: "https://ko-fi.com/subtlefoodie")!
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -27,16 +26,23 @@ struct ContentView: View {
         }) {
             OnboardingSheet()
         }
+        .sheet(isPresented: $showingTipJar) {
+            TipJarView()
+        }
         .alert("Enjoying the app?", isPresented: $showingKofiPrompt) {
-            Button("Maybe later", role: .cancel) {
+            Button("Not now", role: .cancel) {
                 userData.markKofiPromptShown()
             }
-            Button("Buy me a coffee") {
+            Button("Leave a tip") {
                 userData.markKofiPromptShown()
-                UIApplication.shared.open(kofiURL)
+                // Route the prompt into the IAP-backed Tip Jar rather than an
+                // external donation URL — keeps the app on Apple's preferred
+                // payment path. Ko-fi is still available as a passive option
+                // in the About sheet for users who prefer external tipping.
+                showingTipJar = true
             }
         } message: {
-            Text("This app is built and maintained by one local angler in his spare time. If it's been useful, consider buying a coffee on Ko-fi — it keeps the lake list growing. No pressure either way.")
+            Text("This app is built and maintained by one local angler in his spare time. If it's been useful, a small tip helps keep the lake list growing. No pressure either way.")
         }
         .onChange(of: store.pendingDeepLinkedSpotID) { _, newValue in
             if newValue != nil {
