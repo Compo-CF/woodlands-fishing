@@ -11,6 +11,7 @@ final class UserDataStore {
     var visits: [SpotVisit] = []
     var appLaunches: Int = 0
     var kofiPromptLastShown: Date?
+    var recentlyViewedSpotIDs: [UUID] = []
 
     private let defaults = UserDefaults.standard
     private let favoritesKey = "favorites.v1"
@@ -18,6 +19,8 @@ final class UserDataStore {
     private let onboardingKey = "hasSeenOnboarding.v1"
     private let appLaunchesKey = "appLaunches.v1"
     private let kofiLastShownKey = "kofiPromptLastShown.v1"
+    private let recentlyViewedKey = "recentlyViewed.v1"
+    private let recentlyViewedLimit = 10
 
     init() {
         load()
@@ -93,6 +96,25 @@ final class UserDataStore {
         defaults.set(kofiPromptLastShown, forKey: kofiLastShownKey)
     }
 
+    // MARK: - Recently viewed spots
+
+    /// Record that the user just opened a spot. Moves the ID to the front of
+    /// the list, de-dupes any earlier occurrence, and trims to the limit.
+    func recordViewed(_ spotID: UUID) {
+        recentlyViewedSpotIDs.removeAll { $0 == spotID }
+        recentlyViewedSpotIDs.insert(spotID, at: 0)
+        if recentlyViewedSpotIDs.count > recentlyViewedLimit {
+            recentlyViewedSpotIDs = Array(recentlyViewedSpotIDs.prefix(recentlyViewedLimit))
+        }
+        saveRecentlyViewed()
+    }
+
+    private func saveRecentlyViewed() {
+        if let data = try? JSONEncoder().encode(recentlyViewedSpotIDs) {
+            defaults.set(data, forKey: recentlyViewedKey)
+        }
+    }
+
     // MARK: - Persistence
 
     private func load() {
@@ -106,6 +128,10 @@ final class UserDataStore {
         }
         appLaunches = defaults.integer(forKey: appLaunchesKey)
         kofiPromptLastShown = defaults.object(forKey: kofiLastShownKey) as? Date
+        if let data = defaults.data(forKey: recentlyViewedKey),
+           let arr = try? JSONDecoder().decode([UUID].self, from: data) {
+            recentlyViewedSpotIDs = arr
+        }
     }
 
     private func saveFavorites() {

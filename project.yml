@@ -41,13 +41,20 @@ targets:
       path: WoodlandsFishing/Info.plist
       properties:
         CFBundleDisplayName: WFG
-        CFBundleShortVersionString: "1.6"
-        CFBundleVersion: "10"
+        CFBundleShortVersionString: "1.7"
+        CFBundleVersion: "11"
         CFBundleIconName: AppIcon
         UILaunchScreen:
           UIColorName: ""
         NSLocationWhenInUseUsageDescription: Used to show fishing spots near you and sort by distance.
         NSUserTrackingUsageDescription: Used to show relevant ads that help keep this app free and updated.
+        # Custom URL scheme so external links (from Messages, Notes, etc.)
+        # of the form `woodlandsfishing://spot/<uuid>` open directly to that
+        # spot's detail view. See WoodlandsFishingApp.onOpenURL for handling.
+        CFBundleURLTypes:
+          - CFBundleURLName: com.compofelice.WoodlandsFishing.deeplink
+            CFBundleURLSchemes:
+              - woodlandsfishing
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UIRequiredDeviceCapabilities:

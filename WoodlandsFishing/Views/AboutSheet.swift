@@ -6,6 +6,7 @@ struct AboutSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingOnboardingReplay = false
     @State private var showingSubmitSpot = false
+    @State private var showingTipJar = false
 
     private var versionString: String {
         let v = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
@@ -19,6 +20,7 @@ struct AboutSheet: View {
                 VStack(spacing: 24) {
                     header
                     linksCard
+                    tipJarButton
                     suggestSpotButton
                     showIntroButton
                     footer
@@ -39,6 +41,29 @@ struct AboutSheet: View {
             .sheet(isPresented: $showingSubmitSpot) {
                 SubmitSpotSheet()
             }
+            .sheet(isPresented: $showingTipJar) {
+                TipJarView()
+            }
+        }
+    }
+
+    private var tipJarButton: some View {
+        Button {
+            showingTipJar = true
+        } label: {
+            HStack {
+                Image(systemName: "cup.and.saucer.fill")
+                    .foregroundStyle(.orange)
+                Text("Leave a tip")
+                    .font(.subheadline.weight(.medium))
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(14)
+            .background(Color.orange.opacity(0.10), in: .rect(cornerRadius: 12))
+            .foregroundStyle(.primary)
         }
     }
 

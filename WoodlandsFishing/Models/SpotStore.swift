@@ -8,6 +8,12 @@ final class SpotStore {
     var filter = SpotFilter()
     var userLocation: CLLocation?
 
+    /// Set by `WoodlandsFishingApp.onOpenURL` when a `woodlandsfishing://spot/<uuid>`
+    /// deep link fires. Consumed by ContentView + ListTabView, which switch to
+    /// the Spots tab and push the spot's detail view. Cleared to nil after
+    /// consumption so subsequent identical links still trigger navigation.
+    var pendingDeepLinkedSpotID: UUID?
+
     /// Remote source of truth. Edit `docs/Spots.json` in the repo, push to main,
     /// and GitHub Pages serves the update — every app picks it up on next launch.
     /// No app release is needed for data-only changes (new spots, fixed coords).
@@ -79,6 +85,7 @@ final class SpotStore {
             if filter.keepFishOnly && spot.catchAndReleaseOnly { return false }
             if filter.bankOnly && !spot.bankFishing { return false }
             if filter.boatOnly && spot.boatAccess == .none { return false }
+            if filter.rampOnly && spot.boatAccess != .trailerRamp { return false }
             if filter.favoritesOnly && !favoriteIDs.contains(spot.id) { return false }
             if !filter.selectedSpecies.isEmpty {
                 if Set(spot.species).isDisjoint(with: filter.selectedSpecies) {
@@ -108,6 +115,8 @@ struct SpotFilter {
     var keepFishOnly: Bool = false
     var bankOnly: Bool = false
     var boatOnly: Bool = false
+    /// Narrower than boatOnly — only spots with a trailer ramp (motorboat OK).
+    var rampOnly: Bool = false
     var favoritesOnly: Bool = false
     var selectedSpecies: Set<Species> = []
     var searchText: String = ""

@@ -39,7 +39,8 @@ struct FilterBar: View {
                     FilterChip(title: "Public only", isOn: $filter.publicOnly)
                     FilterChip(title: "Keep fish OK", isOn: $filter.keepFishOnly)
                     FilterChip(title: "Bank access", isOn: $filter.bankOnly)
-                    FilterChip(title: "Boat access", isOn: $filter.boatOnly)
+                    FilterChip(title: "Kayak OK", isOn: $filter.boatOnly)
+                    FilterChip(title: "Boat ramp", isOn: $filter.rampOnly)
                 }
                 .padding(.horizontal, 2)
             }

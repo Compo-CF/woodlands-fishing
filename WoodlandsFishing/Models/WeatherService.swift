@@ -11,6 +11,9 @@ enum WeatherService {
         let weatherCode: Int
         let windMph: Double
         let windDirectionDegrees: Int
+        let pressureHPa: Double
+        let sunrise: Date?
+        let sunset: Date?
     }
 
     enum WeatherError: Error { case badResponse, decodeFailed }
@@ -22,10 +25,12 @@ enum WeatherService {
         components.queryItems = [
             .init(name: "latitude", value: String(latitude)),
             .init(name: "longitude", value: String(longitude)),
-            .init(name: "current", value: "temperature_2m,weather_code,wind_speed_10m,wind_direction_10m"),
+            .init(name: "current", value: "temperature_2m,weather_code,wind_speed_10m,wind_direction_10m,pressure_msl"),
+            .init(name: "daily", value: "sunrise,sunset"),
             .init(name: "temperature_unit", value: "fahrenheit"),
             .init(name: "wind_speed_unit", value: "mph"),
             .init(name: "timezone", value: "auto"),
+            .init(name: "forecast_days", value: "1"),
         ]
         var request = URLRequest(url: components.url!)
         request.timeoutInterval = 8
@@ -43,18 +48,42 @@ enum WeatherService {
                 let weather_code: Int
                 let wind_speed_10m: Double
                 let wind_direction_10m: Int
+                let pressure_msl: Double
+            }
+            struct Daily: Decodable {
+                let sunrise: [String]
+                let sunset: [String]
             }
             let current: Current
+            let daily: Daily
+            let utc_offset_seconds: Int
         }
         guard let decoded = try? JSONDecoder().decode(Response.self, from: data) else {
             throw WeatherError.decodeFailed
         }
+        // Open-Meteo returns sunrise/sunset as local ISO strings without a
+        // timezone offset when timezone=auto is set (e.g. "2026-06-30T06:19").
+        // We combine each with the location's utc_offset_seconds to reconstruct
+        // an absolute Date.
+        let sunrise = Self.parseLocalTime(decoded.daily.sunrise.first, offsetSeconds: decoded.utc_offset_seconds)
+        let sunset = Self.parseLocalTime(decoded.daily.sunset.first, offsetSeconds: decoded.utc_offset_seconds)
         return Snapshot(
             temperatureF: decoded.current.temperature_2m,
             weatherCode: decoded.current.weather_code,
             windMph: decoded.current.wind_speed_10m,
-            windDirectionDegrees: decoded.current.wind_direction_10m
+            windDirectionDegrees: decoded.current.wind_direction_10m,
+            pressureHPa: decoded.current.pressure_msl,
+            sunrise: sunrise,
+            sunset: sunset
         )
+    }
+
+    private static func parseLocalTime(_ string: String?, offsetSeconds: Int) -> Date? {
+        guard let string else { return nil }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        formatter.timeZone = TimeZone(secondsFromGMT: offsetSeconds)
+        return formatter.date(from: string)
     }
 }
 
@@ -101,6 +130,11 @@ extension WeatherService.Snapshot {
         let dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
         let index = Int((Double(windDirectionDegrees) + 22.5) / 45.0) % 8
         return dirs[index]
+    }
+
+    /// Barometric pressure converted from hPa to inHg (US anglers convention).
+    var pressureInHg: Double {
+        pressureHPa * 0.02953
     }
 
     /// Short one-line summary suitable for a compact weather row.

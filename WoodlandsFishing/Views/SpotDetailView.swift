@@ -7,6 +7,15 @@ struct SpotDetailView: View {
     @State private var showingLogVisit = false
     @State private var weatherRefreshToken = UUID()
 
+    /// Composed share message — mentions the spot by name, includes the
+    /// App Store URL for anyone who doesn't already have the app.
+    private var shareText: String {
+        """
+        Check out \(spot.name) in The Woodlands Fishing Guide.
+        https://apps.apple.com/us/app/the-woodlands-fishing-guide/id6773332173
+        """
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -31,6 +40,13 @@ struct SpotDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
+                ShareLink(item: shareText, subject: Text(spot.name)) {
+                    Image(systemName: "square.and.arrow.up")
+                        .font(.title3)
+                }
+                .accessibilityLabel("Share this spot")
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     userData.toggleFavorite(spot.id)
                 } label: {
@@ -44,6 +60,9 @@ struct SpotDetailView: View {
         .sheet(isPresented: $showingLogVisit) {
             LogVisitSheet(spot: spot)
                 .environment(userData)
+        }
+        .onAppear {
+            userData.recordViewed(spot.id)
         }
     }
 

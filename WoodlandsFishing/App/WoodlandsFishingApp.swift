@@ -23,6 +23,13 @@ struct WoodlandsFishingApp: App {
                 .onChange(of: locationManager.location) { _, newValue in
                     store.userLocation = newValue
                 }
+                .onOpenURL { url in
+                    // Handles woodlandsfishing://spot/<uuid> from external
+                    // sources like Messages, Notes, or another app.
+                    guard url.scheme == "woodlandsfishing", url.host == "spot" else { return }
+                    guard let id = UUID(uuidString: url.lastPathComponent) else { return }
+                    store.pendingDeepLinkedSpotID = id
+                }
                 .task(id: locationManager.authorizationStatus) {
                     // Chain the App Tracking Transparency request to fire AFTER
                     // the location-permission prompt is resolved. iOS 17/18
