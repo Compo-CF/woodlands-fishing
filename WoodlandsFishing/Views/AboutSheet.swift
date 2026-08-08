@@ -132,14 +132,10 @@ struct AboutSheet: View {
 
     private var linksCard: some View {
         VStack(spacing: 0) {
-            AboutLink(
-                icon: "heart.fill",
-                iconBg: .pink,
-                title: "Support the project",
-                subtitle: "Tip via Ko-fi",
-                url: "https://ko-fi.com/subtlefoodie"
-            )
-            Divider().padding(.leading, 58)
+            // Ko-fi link removed 2026-06-30 after Apple Review flagged it under
+            // Guideline 3.1.1 (external donation mechanism for a digital-content
+            // app). Support-the-developer path is now exclusively the in-app
+            // IAP Tip Jar (see tipJarButton below).
             AboutLink(
                 icon: "envelope.fill",
                 iconBg: .blue,
