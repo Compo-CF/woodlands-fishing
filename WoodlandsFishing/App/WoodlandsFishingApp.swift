@@ -9,6 +9,11 @@ struct WoodlandsFishingApp: App {
     @State private var userData = UserDataStore()
 
     init() {
+        // Cap ad content to a rating suitable for a general-audience fishing
+        // app. Without this, AdMob's default targeting can serve adult/
+        // dating/suggestive creative. Must be set before start() — applies
+        // to every ad request for the lifetime of the process.
+        GADMobileAds.sharedInstance().requestConfiguration.maxAdContentRating = .general
         // Initialize Google Mobile Ads SDK. Ads start loading immediately;
         // the BannerAdView call sites kick off individual requests when shown.
         GADMobileAds.sharedInstance().start(completionHandler: nil)
