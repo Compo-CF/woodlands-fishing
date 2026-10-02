@@ -1,10 +1,8 @@
 import SwiftUI
 
-/// Compact weather card shown on the spot detail screen. Fetches current
-/// conditions from Open-Meteo on appear and again whenever the parent
-/// refresh token changes (pull-to-refresh on the spot detail). Silently
-/// hides itself if the network is unavailable — fishing apps don't need to
-/// fail loudly here.
+/// Field Guide weather card. Big serif temperature, condition line, 2x2 mono
+/// data grid for pressure/wind/sunrise/sunset. Hides itself silently on
+/// network failure — a fishing app doesn't need to shout about missing data.
 struct WeatherCard: View {
     let latitude: Double
     let longitude: Double
@@ -36,100 +34,87 @@ struct WeatherCard: View {
     }
 
     private func loaded(_ snap: WeatherService.Snapshot, fetchedAt: Date) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 14) {
-                Image(systemName: snap.conditionSymbol)
-                    .font(.title2)
-                    .foregroundStyle(iconColor(for: snap.weatherCode))
-                    .frame(width: 36, height: 36)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Current conditions")
-                        .font(.caption2.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                        .textCase(.uppercase)
-                    HStack(spacing: 6) {
-                        Text("\(Int(snap.temperatureF.rounded()))°F")
-                        Text("·").foregroundStyle(.tertiary)
-                        Text(snap.conditionLabel)
-                        Text("·").foregroundStyle(.tertiary)
-                        // Arrow points the direction the wind is GOING (180°
-                        // from the meteorological "from" direction).
-                        Image(systemName: "arrow.up")
-                            .font(.caption.weight(.semibold))
-                            .rotationEffect(.degrees(Double(snap.windDirectionDegrees) + 180))
-                        Text("\(Int(snap.windMph.rounded())) mph \(snap.windCardinal)")
+        VStack(alignment: .leading, spacing: FG.space.lg) {
+            // Hero: big serif temperature + condition line
+            HStack(alignment: .top, spacing: FG.space.lg) {
+                VStack(alignment: .leading, spacing: FG.space.xs) {
+                    HStack(alignment: .firstTextBaseline, spacing: 2) {
+                        Text("\(Int(snap.temperatureF.rounded()))")
+                            .font(.system(size: 64, weight: .bold, design: .serif))
+                            .foregroundStyle(Color.fgInk)
+                        Text("°F")
+                            .font(.fgSerifItalic)
+                            .foregroundStyle(Color.fgSlate)
                     }
-                    .font(.subheadline.weight(.medium))
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel(snap.summary)
-                    Text("Updated \(fetchedAt.formatted(date: .omitted, time: .shortened))")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    Text(snap.conditionLabel)
+                        .font(.fgSerifItalic)
+                        .foregroundStyle(Color.fgSlate)
                 }
                 Spacer()
+                Image(systemName: snap.conditionSymbol)
+                    .font(.system(size: 36, weight: .regular))
+                    .foregroundStyle(iconColor(for: snap.weatherCode))
+                    .accessibilityHidden(true)
             }
-            HStack(spacing: 18) {
-                metric(
-                    icon: "gauge.medium",
+
+            FGHairline()
+
+            // 2x2 mono data grid
+            HStack(alignment: .top, spacing: FG.space.xl) {
+                FGDataRow(
                     label: "Pressure",
-                    value: String(format: "%.2f inHg", snap.pressureInHg)
+                    value: String(format: "%.2f", snap.pressureInHg),
+                    monoValue: true
+                )
+                FGDataRow(
+                    label: "Wind",
+                    value: "\(Int(snap.windMph.rounded())) \(snap.windCardinal)",
+                    monoValue: true
                 )
                 if let sunrise = snap.sunrise {
-                    metric(
-                        icon: "sunrise.fill",
+                    FGDataRow(
                         label: "Sunrise",
-                        value: sunrise.formatted(date: .omitted, time: .shortened)
+                        value: sunrise.formatted(date: .omitted, time: .shortened),
+                        monoValue: true
                     )
                 }
                 if let sunset = snap.sunset {
-                    metric(
-                        icon: "sunset.fill",
+                    FGDataRow(
                         label: "Sunset",
-                        value: sunset.formatted(date: .omitted, time: .shortened)
+                        value: sunset.formatted(date: .omitted, time: .shortened),
+                        monoValue: true
                     )
                 }
             }
-            .font(.caption)
-        }
-        .padding(14)
-        .background(Color.blue.opacity(0.08), in: .rect(cornerRadius: 12))
-    }
 
-    private func metric(icon: String, label: String, value: String) -> some View {
-        HStack(spacing: 5) {
-            Image(systemName: icon)
-                .foregroundStyle(.secondary)
-            VStack(alignment: .leading, spacing: 0) {
-                Text(label)
-                    .font(.caption2.weight(.semibold))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                Text(value)
-                    .font(.caption.weight(.medium))
-            }
+            Text("Updated \(fetchedAt.formatted(date: .omitted, time: .shortened))")
+                .font(.fgMicro)
+                .foregroundStyle(Color.fgSlate)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(snap.summary)
         }
+        .fgCard(fill: .fgKraft)
     }
 
     private var placeholder: some View {
-        HStack(spacing: 14) {
+        HStack(spacing: FG.space.md) {
             ProgressView()
-                .frame(width: 36, height: 36)
+                .tint(Color.fgSlate)
             Text("Loading current conditions…")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .font(.fgBodySm)
+                .foregroundStyle(Color.fgSlate)
             Spacer()
         }
-        .padding(14)
-        .background(Color.blue.opacity(0.05), in: .rect(cornerRadius: 12))
+        .fgCard(fill: .fgKraft)
     }
 
     private func iconColor(for code: Int) -> Color {
         switch code {
-        case 0, 1, 2: .orange
-        case 3, 45, 48: .gray
-        case 51...86: .blue
-        case 95, 96, 99: .purple
-        default: .secondary
+        case 0, 1, 2: .fgAmber         // clear/mainly clear
+        case 3, 45, 48: .fgSlate        // overcast/fog
+        case 51...86: .fgDeepLake       // precipitation
+        case 95, 96, 99: .fgRust        // thunderstorm
+        default: .fgSlate
         }
     }
 }

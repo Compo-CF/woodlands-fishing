@@ -7,8 +7,6 @@ struct SpotDetailView: View {
     @State private var showingLogVisit = false
     @State private var weatherRefreshToken = UUID()
 
-    /// Composed share message — mentions the spot by name, includes the
-    /// App Store URL for anyone who doesn't already have the app.
     private var shareText: String {
         """
         Check out \(spot.name) in The Woodlands Fishing Guide.
@@ -18,22 +16,24 @@ struct SpotDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                mapSnippet
-                accessBadge
-                WeatherCard(latitude: spot.latitude, longitude: spot.longitude, refreshToken: weatherRefreshToken)
-                permitBlock
-                infoBlock
-                directionsButton
-                visitsBlock
-                sourceLink
+            VStack(alignment: .leading, spacing: FG.space.xxl) {
+                heroCard
+                titleBlock
+                weatherSection
+                atAGlanceSection
+                speciesSection
+                permitsSection
+                detailsSection
+                visitsSection
+                directionsCTA
+                sourceFooter
             }
-            .padding()
+            .padding(FG.space.lg)
+            .padding(.bottom, FG.space.xxxl)
         }
+        .background(Color.fgBone.ignoresSafeArea())
         .refreshable {
             weatherRefreshToken = UUID()
-            // Hold the spinner long enough that the new fetch lands while
-            // it's still spinning — typical Open-Meteo round-trip is ~400ms.
             try? await Task.sleep(for: .seconds(0.7))
         }
         .navigationTitle(spot.name)
@@ -42,7 +42,8 @@ struct SpotDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: shareText, subject: Text(spot.name)) {
                     Image(systemName: "square.and.arrow.up")
-                        .font(.title3)
+                        .font(.fgBodyBold)
+                        .foregroundStyle(Color.fgDeepLake)
                 }
                 .accessibilityLabel("Share this spot")
             }
@@ -51,8 +52,8 @@ struct SpotDetailView: View {
                     userData.toggleFavorite(spot.id)
                 } label: {
                     Image(systemName: userData.isFavorite(spot.id) ? "heart.fill" : "heart")
-                        .foregroundStyle(.pink)
-                        .font(.title3)
+                        .foregroundStyle(Color.fgAmber)
+                        .font(.fgBodyBold)
                 }
                 .accessibilityLabel(userData.isFavorite(spot.id) ? "Remove from favorites" : "Add to favorites")
             }
@@ -66,164 +67,281 @@ struct SpotDetailView: View {
         }
     }
 
-    private var mapSnippet: some View {
-        Map(initialPosition: .region(
-            MKCoordinateRegion(
-                center: spot.coordinate,
-                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    // MARK: - Hero
+    // Programmatic Field Guide hero: sunset gradient + sun + pine silhouettes
+    // + ripple lines. Placeholder for a real coverPhotoURL painting later
+    // (task #3 schema migration will add that field).
+    private var heroCard: some View {
+        ZStack {
+            // Sunset-to-water vertical gradient
+            LinearGradient(
+                stops: [
+                    .init(color: Color.fgDeepLake, location: 0.0),
+                    .init(color: Color.fgAmber.opacity(0.9), location: 0.45),
+                    .init(color: Color.fgDeepLake, location: 0.6),
+                    .init(color: Color.fgDeepLake, location: 1.0)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
             )
-        )) {
-            Marker(spot.name, systemImage: "fish.fill", coordinate: spot.coordinate)
-                .tint(spot.access.pinColor)
+            // Sun disc, upper-right
+            Circle()
+                .fill(Color.fgAmber)
+                .frame(width: 72, height: 72)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                .padding(.top, FG.space.xl)
+                .padding(.trailing, FG.space.x4)
+            // Pine silhouettes on the right horizon
+            HStack(alignment: .bottom, spacing: 6) {
+                pine(height: 50)
+                pine(height: 68)
+                pine(height: 44)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+            .padding(.trailing, FG.space.xl)
+            .padding(.vertical, FG.space.xxl)
+            // Ripple lines centered toward the bottom
+            VStack(spacing: 10) {
+                ripple(width: 120)
+                ripple(width: 80)
+                ripple(width: 50)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            .padding(.bottom, FG.space.xxxl)
         }
-        .frame(height: 200)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .allowsHitTesting(false)
+        .frame(height: 220)
+        .clipShape(RoundedRectangle(cornerRadius: FG.radius.lg, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: FG.radius.lg, style: .continuous)
+                .stroke(Color.fgInk.opacity(0.9), lineWidth: FG.stroke.medium)
+        )
     }
 
-    private var accessBadge: some View {
-        HStack(spacing: 8) {
-            Circle()
-                .fill(spot.access.pinColor)
-                .frame(width: 10, height: 10)
-            Text(spot.access.displayName)
-                .font(.subheadline.weight(.semibold))
-            if spot.catchAndReleaseOnly {
-                Text("• Catch & release only")
-                    .font(.subheadline)
-                    .foregroundStyle(.orange)
+    private func pine(height: CGFloat) -> some View {
+        Triangle()
+            .fill(Color.fgPine)
+            .frame(width: height * 0.5, height: height)
+    }
+
+    private func ripple(width: CGFloat) -> some View {
+        Rectangle()
+            .fill(Color.fgBone.opacity(0.5))
+            .frame(width: width, height: 2)
+    }
+
+    // MARK: - Title + access badge
+    private var titleBlock: some View {
+        VStack(alignment: .leading, spacing: FG.space.sm) {
+            Text(spot.name)
+                .font(.fgDisplayXL)
+                .foregroundStyle(Color.fgInk)
+                .fixedSize(horizontal: false, vertical: true)
+            if !spot.description.isEmpty {
+                Text(firstSentence(of: spot.description))
+                    .font(.fgSerifItalic)
+                    .foregroundStyle(Color.fgSlate)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Spacer()
+            FGBadge(text: accessBadgeText, color: spot.access.fgPinColor)
             if let last = userData.lastVisit(for: spot.id) {
                 Text("Last fished \(last.date.formatted(.relative(presentation: .named)))")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .font(.fgCaption)
+                    .foregroundStyle(Color.fgSlate)
             }
         }
     }
 
-    private var permitBlock: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Label("Permits & licenses", systemImage: "doc.text.fill")
-                .font(.headline)
-            ForEach(spot.permitsRequired, id: \.self) { permit in
-                if let url = permit.infoURL {
-                    Link(destination: url) {
-                        HStack {
-                            Text(permit.displayName)
-                                .font(.subheadline)
-                            Spacer()
-                            Image(systemName: "arrow.up.right.square")
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                } else {
-                    Text(permit.displayName)
-                        .font(.subheadline)
-                }
-            }
-            Text("Anyone under 17 is exempt from the state license requirement.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+    private var accessBadgeText: String {
+        var parts = [spot.access.displayName]
+        if spot.bankFishing { parts.append("Bank") }
+        switch spot.boatAccess {
+        case .kayakCanoe: parts.append("Kayak")
+        case .trailerRamp: parts.append("Boat ramp")
+        case .none: break
         }
-        .padding()
-        .background(Color.secondary.opacity(0.1), in: .rect(cornerRadius: 12))
+        if spot.catchAndReleaseOnly { parts.append("C&R only") }
+        return parts.joined(separator: " · ")
     }
 
-    private var infoBlock: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            infoRow("Manager", spot.manager)
-            infoRow("Bank fishing", spot.bankFishing ? "Yes" : "No")
-            infoRow("Boats", spot.boatAccess.displayName)
-            if !spot.species.isEmpty {
-                infoRow("Species", spot.species.map(\.displayName).joined(separator: ", "))
-            }
-            if let parking = spot.parkingNotes {
-                infoRow("Access & parking", parking)
-            }
-            if let restrictions = spot.restrictions {
-                infoRow("Restrictions", restrictions)
-            }
-            Text(spot.description)
-                .font(.body)
-                .padding(.top, 4)
+    private func firstSentence(of text: String) -> String {
+        if let end = text.firstIndex(where: { $0 == "." || $0 == "!" || $0 == "?" }) {
+            return String(text[...end])
+        }
+        return text
+    }
+
+    // MARK: - Section 1: Today on the water
+    private var weatherSection: some View {
+        VStack(alignment: .leading, spacing: FG.space.md) {
+            FGSectionHeader(title: "Today on the water")
+            WeatherCard(latitude: spot.latitude, longitude: spot.longitude, refreshToken: weatherRefreshToken)
         }
     }
 
-    private func infoRow(_ label: String, _ value: String) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(label.uppercased())
-                .font(.caption2.weight(.semibold))
-                .foregroundStyle(.secondary)
-            Text(value)
-                .font(.subheadline)
+    // MARK: - Section 2: At a glance
+    private var atAGlanceSection: some View {
+        VStack(alignment: .leading, spacing: FG.space.md) {
+            FGSectionHeader(title: "At a glance")
+            FlowChips(chips: atAGlanceChips)
         }
     }
 
-    private var directionsButton: some View {
-        Button(action: openInMaps) {
-            Label("Directions in Apple Maps", systemImage: "arrow.triangle.turn.up.right.diamond.fill")
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(spot.access == .privateNoAccess ? Color.gray : Color.accentColor, in: .rect(cornerRadius: 12))
-                .foregroundStyle(.white)
-                .font(.headline)
+    private var atAGlanceChips: [String] {
+        var chips: [String] = []
+        if spot.bankFishing { chips.append("Bank access") }
+        switch spot.boatAccess {
+        case .kayakCanoe: chips.append("Kayak OK")
+        case .trailerRamp: chips.append("Boat ramp")
+        case .none: break
         }
-        .disabled(spot.access == .privateNoAccess)
+        if spot.catchAndReleaseOnly { chips.append("Catch & release only") }
+        return chips
     }
 
-    private var visitsBlock: some View {
-        let visits = userData.visits(for: spot.id)
-        return VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Label("Your visits", systemImage: "calendar")
-                    .font(.headline)
-                Spacer()
-                Button {
-                    showingLogVisit = true
-                } label: {
-                    Label("Log visit", systemImage: "plus.circle.fill")
-                        .font(.subheadline.weight(.semibold))
-                }
-            }
-            if visits.isEmpty {
-                Text("No visits logged yet. Tap Log visit after you fish here.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } else {
-                ForEach(visits.prefix(5)) { visit in
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(visit.date.formatted(date: .abbreviated, time: .omitted))
-                            .font(.subheadline.weight(.medium))
-                        if !visit.note.isEmpty {
-                            Text(visit.note)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 12)
-                    .background(Color.secondary.opacity(0.08), in: .rect(cornerRadius: 8))
-                }
-                if visits.count > 5 {
-                    Text("+ \(visits.count - 5) more")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-        }
-        .padding()
-        .background(Color.secondary.opacity(0.1), in: .rect(cornerRadius: 12))
-    }
-
+    // MARK: - Section 3: Species
     @ViewBuilder
-    private var sourceLink: some View {
+    private var speciesSection: some View {
+        if !spot.species.isEmpty {
+            VStack(alignment: .leading, spacing: FG.space.md) {
+                FGSectionHeader(title: "Species")
+                FlowChips(chips: spot.species.map(\.displayName))
+            }
+        }
+    }
+
+    // MARK: - Section 4: Permits
+    private var permitsSection: some View {
+        VStack(alignment: .leading, spacing: FG.space.md) {
+            FGSectionHeader(title: "Permits")
+            VStack(alignment: .leading, spacing: FG.space.md) {
+                ForEach(spot.permitsRequired, id: \.self) { permit in
+                    if let url = permit.infoURL {
+                        Link(destination: url) {
+                            HStack {
+                                Text(permit.displayName)
+                                    .font(.fgBody)
+                                    .foregroundStyle(Color.fgInk)
+                                Spacer()
+                                Image(systemName: "arrow.up.right")
+                                    .font(.fgCaption)
+                                    .foregroundStyle(Color.fgSlate)
+                            }
+                        }
+                    } else {
+                        Text(permit.displayName)
+                            .font(.fgBody)
+                            .foregroundStyle(Color.fgInk)
+                    }
+                }
+                Text("Anyone under 17 is exempt from the state license requirement.")
+                    .font(.fgCaption)
+                    .foregroundStyle(Color.fgSlate)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .fgCard(fill: .fgKraft)
+        }
+    }
+
+    // MARK: - Section 5: Details (manager, parking, restrictions, description)
+    private var detailsSection: some View {
+        VStack(alignment: .leading, spacing: FG.space.md) {
+            FGSectionHeader(title: "Details")
+            VStack(alignment: .leading, spacing: FG.space.lg) {
+                FGDataRow(label: "Manager", value: spot.manager)
+                if let parking = spot.parkingNotes {
+                    FGDataRow(label: "Access & parking", value: parking)
+                }
+                if let restrictions = spot.restrictions {
+                    FGDataRow(label: "Restrictions", value: restrictions)
+                }
+                if !spot.description.isEmpty {
+                    Text(spot.description)
+                        .font(.fgBody)
+                        .foregroundStyle(Color.fgInk)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+    }
+
+    // MARK: - Section 6: Your visits
+    private var visitsSection: some View {
+        let visits = userData.visits(for: spot.id)
+        return VStack(alignment: .leading, spacing: FG.space.md) {
+            HStack {
+                FGSectionHeader(title: "Your visits")
+            }
+            VStack(alignment: .leading, spacing: FG.space.md) {
+                HStack {
+                    Button {
+                        showingLogVisit = true
+                    } label: {
+                        Label("Log visit", systemImage: "plus")
+                            .font(.fgBodyBold)
+                            .foregroundStyle(Color.fgPine)
+                    }
+                    Spacer()
+                }
+                if visits.isEmpty {
+                    Text("No visits logged yet. Tap Log visit after you fish here.")
+                        .font(.fgBodySm)
+                        .foregroundStyle(Color.fgSlate)
+                } else {
+                    VStack(spacing: 0) {
+                        ForEach(Array(visits.prefix(5).enumerated()), id: \.element.id) { index, visit in
+                            VStack(alignment: .leading, spacing: FG.space.xs) {
+                                Text(visit.date.formatted(date: .abbreviated, time: .omitted))
+                                    .font(.fgBodyBold)
+                                    .foregroundStyle(Color.fgInk)
+                                if !visit.note.isEmpty {
+                                    Text(visit.note)
+                                        .font(.fgCaption)
+                                        .foregroundStyle(Color.fgSlate)
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, FG.space.md)
+                            if index < min(visits.count, 5) - 1 {
+                                FGHairline()
+                            }
+                        }
+                    }
+                    if visits.count > 5 {
+                        Text("+ \(visits.count - 5) more")
+                            .font(.fgCaption)
+                            .foregroundStyle(Color.fgSlate)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .fgCard(fill: .fgKraft)
+        }
+    }
+
+    // MARK: - CTA
+    private var directionsCTA: some View {
+        FGButton(
+            title: "Get directions in Apple Maps",
+            systemImage: "arrow.triangle.turn.up.right.diamond.fill",
+            style: .primary,
+            action: openInMaps
+        )
+        .opacity(spot.access == .privateNoAccess ? 0.4 : 1)
+        .allowsHitTesting(spot.access != .privateNoAccess)
+    }
+
+    // MARK: - Source footer
+    @ViewBuilder
+    private var sourceFooter: some View {
         if let url = URL(string: spot.sourceURL) {
             Link(destination: url) {
-                Text("Verify info at source ↗")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
+                HStack(spacing: FG.space.xs) {
+                    Text("Verify info at source")
+                        .font(.fgCaption)
+                    Image(systemName: "arrow.up.right")
+                        .font(.fgMicro)
+                }
+                .foregroundStyle(Color.fgSlate)
             }
         }
     }
@@ -235,5 +353,97 @@ struct SpotDetailView: View {
         item.openInMaps(launchOptions: [
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
         ])
+    }
+}
+
+// MARK: - Supporting shapes & chip layout
+
+// Simple isoceles triangle for pine silhouettes.
+private struct Triangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        p.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        p.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        p.closeSubpath()
+        return p
+    }
+}
+
+// Lays out FGChips in rows that wrap when they'd overflow the container.
+// Uses the iOS 16+ Layout protocol for a greedy row-packing flow.
+private struct FlowChips: View {
+    let chips: [String]
+    var body: some View {
+        FlowLayout(spacing: FG.space.sm) {
+            ForEach(chips, id: \.self) { chip in
+                FGChip(text: chip)
+            }
+        }
+    }
+}
+
+private struct FlowLayout: Layout {
+    var spacing: CGFloat = 8
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let maxWidth = proposal.width ?? .infinity
+        var totalHeight: CGFloat = 0
+        var rowWidth: CGFloat = 0
+        var rowHeight: CGFloat = 0
+        var maxRowWidth: CGFloat = 0
+
+        for subview in subviews {
+            let size = subview.sizeThatFits(.unspecified)
+            if rowWidth + size.width > maxWidth && rowWidth > 0 {
+                totalHeight += rowHeight + spacing
+                maxRowWidth = max(maxRowWidth, rowWidth - spacing)
+                rowWidth = size.width + spacing
+                rowHeight = size.height
+            } else {
+                rowWidth += size.width + spacing
+                rowHeight = max(rowHeight, size.height)
+            }
+        }
+        totalHeight += rowHeight
+        maxRowWidth = max(maxRowWidth, rowWidth - spacing)
+        return CGSize(
+            width: maxWidth.isFinite ? maxWidth : maxRowWidth,
+            height: totalHeight
+        )
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        var x: CGFloat = bounds.minX
+        var y: CGFloat = bounds.minY
+        var rowHeight: CGFloat = 0
+
+        for subview in subviews {
+            let size = subview.sizeThatFits(.unspecified)
+            if x + size.width > bounds.maxX && x > bounds.minX {
+                x = bounds.minX
+                y += rowHeight + spacing
+                rowHeight = 0
+            }
+            subview.place(
+                at: CGPoint(x: x, y: y),
+                anchor: .topLeading,
+                proposal: ProposedViewSize(size)
+            )
+            x += size.width + spacing
+            rowHeight = max(rowHeight, size.height)
+        }
+    }
+}
+
+// MARK: - AccessType -> FG palette
+// Scoped to this view for now; migrated into Enums.swift during task #6 pass.
+private extension AccessType {
+    var fgPinColor: Color {
+        switch self {
+        case .publicOpen: .fgPine
+        case .publicLimited: .fgAmber
+        case .privateNoAccess: .fgRust
+        }
     }
 }
