@@ -443,6 +443,7 @@ private extension AccessType {
         switch self {
         case .publicOpen: .fgPine
         case .publicLimited: .fgAmber
+        case .privateContact: .fgSlate
         case .privateNoAccess: .fgRust
         }
     }

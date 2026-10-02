@@ -122,6 +122,7 @@ final class SpotAnnotationView: MKMarkerAnnotationView {
             switch spotAnno.spot.access {
             case .publicOpen: color = .systemGreen
             case .publicLimited: color = .systemYellow
+            case .privateContact: color = .systemGray
             case .privateNoAccess: color = .systemRed
             }
             markerTintColor = color

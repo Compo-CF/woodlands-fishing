@@ -73,7 +73,9 @@ final class SpotStore {
     }
 
     private static func decode(_ data: Data) -> [FishingSpot]? {
-        try? JSONDecoder().decode(SpotsFile.self, from: data).spots
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601  // for lastStockedDate (v2.0)
+        return try? decoder.decode(SpotsFile.self, from: data).spots
     }
 
     /// Filter the spots. Pass the user's favorite IDs so the favorites chip

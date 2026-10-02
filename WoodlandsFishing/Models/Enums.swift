@@ -8,20 +8,25 @@ enum WaterBody: String, Codable, CaseIterable {
 enum AccessType: String, Codable, CaseIterable {
     case publicOpen
     case publicLimited
+    case privateContact      // Private, but may fish with owner's permission
     case privateNoAccess
 
     var displayName: String {
         switch self {
         case .publicOpen: "Public"
         case .publicLimited: "Public (limited)"
+        case .privateContact: "Private — contact owner"
         case .privateNoAccess: "Private — no access"
         }
     }
 
+    // Legacy color map kept for ClusteredMapView; v2.0 views use the FG
+    // palette (see SpotDetailView.fgPinColor).
     var pinColor: Color {
         switch self {
         case .publicOpen: .green
         case .publicLimited: .yellow
+        case .privateContact: .gray
         case .privateNoAccess: .red
         }
     }
@@ -82,6 +87,35 @@ enum Species: String, Codable, CaseIterable {
         case .spottedGar: "Spotted gar"
         case .whiteBass: "White bass"
         case .hybridStripedBass: "Hybrid striped bass"
+        }
+    }
+}
+
+// v2.0 schema additions.
+enum ShadeLevel: String, Codable, CaseIterable {
+    case none
+    case partial
+    case full
+
+    var displayName: String {
+        switch self {
+        case .none: "No shade"
+        case .partial: "Partial shade"
+        case .full: "Full shade"
+        }
+    }
+}
+
+enum BathroomType: String, Codable, CaseIterable {
+    case none
+    case portable
+    case permanent
+
+    var displayName: String {
+        switch self {
+        case .none: "No bathroom"
+        case .portable: "Portable bathroom"
+        case .permanent: "Permanent bathroom"
         }
     }
 }
