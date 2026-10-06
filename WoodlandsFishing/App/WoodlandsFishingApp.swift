@@ -7,6 +7,7 @@ struct WoodlandsFishingApp: App {
     @State private var store = SpotStore()
     @State private var locationManager = LocationManager()
     @State private var userData = UserDataStore()
+    @State private var showSplash = true
 
     init() {
         // Cap ad content to a rating suitable for a general-audience fishing
@@ -21,41 +22,58 @@ struct WoodlandsFishingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(store)
-                .environment(locationManager)
-                .environment(userData)
-                .onChange(of: locationManager.location) { _, newValue in
-                    store.userLocation = newValue
-                }
-                .onOpenURL { url in
-                    // Handles woodlandsfishing://spot/<uuid> from external
-                    // sources like Messages, Notes, or another app.
-                    guard url.scheme == "woodlandsfishing", url.host == "spot" else { return }
-                    guard let id = UUID(uuidString: url.lastPathComponent) else { return }
-                    store.pendingDeepLinkedSpotID = id
-                }
-                .task(id: locationManager.authorizationStatus) {
-                    // Chain the App Tracking Transparency request to fire AFTER
-                    // the location-permission prompt is resolved. iOS 17/18
-                    // suppresses one system prompt when another is already up,
-                    // and the map's location prompt fires first — so a pure
-                    // time-based ATT request gets silently dropped on first
-                    // launch. Sequencing them via .task(id:) on the location
-                    // authorization status guarantees the ATT prompt actually
-                    // appears.
-                    //
-                    // Flow on first launch:
-                    //   1. authorizationStatus == .notDetermined → early return
-                    //   2. user responds to the location prompt
-                    //   3. authorizationStatus changes → .task(id:) re-fires
-                    //   4. brief breathing room, then ATT prompt appears
-                    guard locationManager.authorizationStatus != .notDetermined else { return }
-                    try? await Task.sleep(nanoseconds: 700_000_000)
-                    if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
-                        _ = await ATTrackingManager.requestTrackingAuthorization()
+            ZStack {
+                ContentView()
+                    .environment(store)
+                    .environment(locationManager)
+                    .environment(userData)
+                    .onChange(of: locationManager.location) { _, newValue in
+                        store.userLocation = newValue
                     }
+                    .onOpenURL { url in
+                        // Handles woodlandsfishing://spot/<uuid> from external
+                        // sources like Messages, Notes, or another app.
+                        guard url.scheme == "woodlandsfishing", url.host == "spot" else { return }
+                        guard let id = UUID(uuidString: url.lastPathComponent) else { return }
+                        store.pendingDeepLinkedSpotID = id
+                    }
+                    .task(id: locationManager.authorizationStatus) {
+                        // Chain the App Tracking Transparency request to fire
+                        // AFTER the location-permission prompt is resolved.
+                        // iOS 17/18 suppresses one system prompt when another
+                        // is already up, and the map's location prompt fires
+                        // first — so a pure time-based ATT request gets
+                        // silently dropped on first launch. Sequencing them
+                        // via .task(id:) on the location authorization status
+                        // guarantees the ATT prompt actually appears.
+                        //
+                        // Flow on first launch:
+                        //   1. authorizationStatus == .notDetermined → return
+                        //   2. user responds to the location prompt
+                        //   3. authorizationStatus changes → .task(id:) re-fires
+                        //   4. brief breathing room, then ATT prompt appears
+                        guard locationManager.authorizationStatus != .notDetermined else { return }
+                        try? await Task.sleep(nanoseconds: 700_000_000)
+                        if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
+                            _ = await ATTrackingManager.requestTrackingAuthorization()
+                        }
+                    }
+
+                if showSplash {
+                    SplashView()
+                        .transition(.opacity)
+                        .task {
+                            // Hold the splash long enough for its own animation
+                            // to finish, then fade out. ContentView loads data
+                            // in the background during this window.
+                            try? await Task.sleep(for: .milliseconds(1400))
+                            withAnimation(.easeOut(duration: 0.5)) {
+                                showSplash = false
+                            }
+                        }
+                        .allowsHitTesting(false)
                 }
+            }
         }
     }
 }
