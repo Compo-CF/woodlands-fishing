@@ -126,6 +126,9 @@ struct AboutSheet: View {
             Text(versionString)
                 .font(.caption)
                 .foregroundStyle(.secondary)
+            Text("Made by After Hours Dev Studio")
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
         .padding(.top, 8)
     }
@@ -158,6 +161,14 @@ struct AboutSheet: View {
                 title: "Privacy Policy",
                 subtitle: nil,
                 url: "https://compo-cf.github.io/woodlands-fishing/privacy.html"
+            )
+            Divider().padding(.leading, 58)
+            AboutLink(
+                icon: "square.grid.2x2.fill",
+                iconBg: .indigo,
+                title: "More from After Hours Dev Studio",
+                subtitle: nil,
+                url: "https://compo-cf.github.io/afterhoursdevstudio/"
             )
         }
         .background(Color.secondary.opacity(0.10), in: .rect(cornerRadius: 14))
