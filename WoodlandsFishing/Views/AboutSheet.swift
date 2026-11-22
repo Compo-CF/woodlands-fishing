@@ -157,7 +157,7 @@ struct AboutSheet: View {
                 iconBg: .gray,
                 title: "Privacy Policy",
                 subtitle: nil,
-                url: "https://compo-cf.github.io/woodlands-fishing/privacy.html"
+                url: "https://afterhoursdevstudio.com/woodlands-fishing-guide/privacy/"
             )
         }
         .background(Color.secondary.opacity(0.10), in: .rect(cornerRadius: 14))
