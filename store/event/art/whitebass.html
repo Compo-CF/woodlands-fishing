@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0}
+  body{width:var(--w);height:var(--h);overflow:hidden;background:#0F3B4C;font-family:Georgia,"Times New Roman",serif}
+  .stage{position:relative;width:100%;height:100%;
+    background:
+      radial-gradient(ellipse at 50% 115%, #2E4A3B 0%, rgba(46,74,59,0) 55%),
+      linear-gradient(180deg,#1d4a57 0%,#0F3B4C 50%,#0b2c39 100%);}
+  .sun{position:absolute;border-radius:50%;background:#D97E2A;opacity:.95}
+  .ring{position:absolute;border-radius:50%;border:6px solid rgba(247,241,227,.22)}
+  .flake{position:absolute;width:4px;border-radius:2px;background:rgba(247,241,227,.35);transform:rotate(14deg)}
+  .water{position:absolute;left:0;right:0;height:3px;background:rgba(247,241,227,.18)}
+  .title{position:absolute;color:#F7F1E3;font-weight:700;letter-spacing:-1px;line-height:.98}
+  .kicker{position:absolute;color:#D97E2A;font-family:"Courier New",monospace;font-weight:700;letter-spacing:6px;text-transform:uppercase}
+  .sub{position:absolute;color:rgba(247,241,227,.85);font-style:italic}
+  svg.fish{position:absolute}
+</style></head>
+<body><div class="stage" id="s"></div>
+<script>
+const P = new URLSearchParams(location.search);
+const W = +P.get('w'), H = +P.get('h'), portrait = H > W;
+document.body.style.setProperty('--w', W+'px'); document.body.style.setProperty('--h', H+'px');
+const s = document.getElementById('s');
+function el(tag, cls, css, html){const e=document.createElement(tag); if(cls) e.className=cls; Object.assign(e.style, css); if(html) e.innerHTML=html; s.appendChild(e); return e;}
+const sun = portrait ? {x:540,y:560,r:250} : {x:1380,y:420,r:250};
+el('div','ring',{left:(sun.x-sun.r-70)+'px',top:(sun.y-sun.r-70)+'px',width:(2*sun.r+140)+'px',height:(2*sun.r+140)+'px'});
+el('div','sun',{left:(sun.x-sun.r)+'px',top:(sun.y-sun.r)+'px',width:2*sun.r+'px',height:2*sun.r+'px'});
+const wy = portrait ? 820 : 700;
+for (let i=0;i<6;i++) el('div','water',{top:(wy+i*(portrait?34:30))+'px',left:(i*37%90)+'px',right:(i*53%120)+'px',opacity:1-i*.13});
+const flakes = portrait ? [[110,180,64],[900,140,48],[820,980,40],[160,1040,52],[960,1500,44],[80,1640,36]] : [[120,110,60],[760,90,44],[1780,140,52],[1660,880,40],[980,960,36]];
+for (const [x,y,z] of flakes) for (let k=0;k<3;k++) el('div','flake',{left:(x+k*46)+'px',top:(y+k*30)+'px',height:(z*1.6)+'px'});
+const fishSVG = `<svg class="fish" viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
+ <path fill="#1A1A1A" d="M16,104 C50,52 150,30 250,44 C300,52 334,72 350,92 L410,52 L394,104 L410,156 L350,116 C334,136 300,154 250,162 C150,176 50,156 16,104 Z"/>
+ <path fill="#1A1A1A" d="M130,46 L160,10 L196,40 Z"/><path fill="#1A1A1A" d="M206,42 L236,16 L270,48 Z"/><path fill="#1A1A1A" d="M170,160 L196,194 L236,164 Z"/>
+ <circle cx="56" cy="94" r="9" fill="#F7F1E3"/><circle cx="56" cy="94" r="4" fill="#1A1A1A"/>
+ <g stroke="#F7F1E3" stroke-opacity=".28" stroke-width="5" fill="none"><path d="M100,78 C170,70 250,70 330,90"/><path d="M96,100 C170,94 250,94 336,104"/><path d="M100,122 C170,118 250,120 330,118"/></g>
+</svg>`;
+const f = el('div','',{position:'absolute',left:'0',top:'0'}); f.innerHTML = fishSVG; const fs = f.firstElementChild;
+if (portrait){ Object.assign(fs.style,{left:'250px',top:'440px',width:'580px'}); }
+else { Object.assign(fs.style,{left:'1100px',top:'310px',width:'560px'}); }
+if (portrait){
+  el('div','kicker',{left:'90px',top:'1230px',fontSize:'34px'},'Late-winter run');
+  el('div','title',{left:'84px',top:'1290px',fontSize:'128px',width:'920px'},'White<br>Bass<br>Run');
+  el('div','sub',{left:'90px',top:'1720px',fontSize:'44px',width:'900px'},'Spring Creek spots near The&nbsp;Woodlands');
+} else {
+  el('div','kicker',{left:'120px',top:'330px',fontSize:'34px'},'Late-winter run');
+  el('div','title',{left:'112px',top:'390px',fontSize:'150px',width:'900px'},'White Bass<br>Run');
+}
+</script></body></html>
