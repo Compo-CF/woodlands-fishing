@@ -18,6 +18,14 @@ struct ListTabView: View {
         @Bindable var store = store
         NavigationStack(path: $navigationPath) {
             List {
+                if WinterSeason.isActive() && store.filter.searchText.isEmpty {
+                    let count = WinterSeason.spots(from: store.spots).count
+                    if count > 0 {
+                        Section {
+                            WinterBanner(count: count) { store.pendingWinterEvent = true }
+                        }
+                    }
+                }
                 if !recentlyViewedSpots.isEmpty && store.filter.searchText.isEmpty {
                     Section {
                         ScrollView(.horizontal, showsIndicators: false) {

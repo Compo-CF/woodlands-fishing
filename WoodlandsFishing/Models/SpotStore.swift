@@ -14,6 +14,11 @@ final class SpotStore {
     /// consumption so subsequent identical links still trigger navigation.
     var pendingDeepLinkedSpotID: UUID?
 
+    /// Set by the `woodlandsfishing://winter` deep link (App Store In-App
+    /// Event) or the Winter banner on the Spots tab. ContentView presents
+    /// WinterSpotsView and clears it.
+    var pendingWinterEvent: Bool = false
+
     /// Remote source of truth. Edit `docs/Spots.json` in the repo, push to main,
     /// and GitHub Pages serves the update — every app picks it up on next launch.
     /// No app release is needed for data-only changes (new spots, fixed coords).

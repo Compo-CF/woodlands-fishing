@@ -7,6 +7,7 @@ struct ContentView: View {
     @State private var showingOnboarding = false
     @State private var showingKofiPrompt = false
     @State private var showingTipJar = false
+    @State private var showingWinter = false
     @State private var hasRecordedLaunch = false
 
     var body: some View {
@@ -23,11 +24,23 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingOnboarding, onDismiss: {
             userData.hasSeenOnboarding = true
+            // A winter deep link that arrived during onboarding opens now.
+            if store.pendingWinterEvent { showingWinter = true }
         }) {
             OnboardingSheet()
         }
         .sheet(isPresented: $showingTipJar) {
             TipJarView()
+        }
+        .sheet(isPresented: $showingWinter, onDismiss: {
+            store.pendingWinterEvent = false
+        }) {
+            WinterSpotsView()
+        }
+        .onChange(of: store.pendingWinterEvent) { _, newValue in
+            guard newValue, !showingOnboarding else { return }
+            showingTipJar = false
+            showingWinter = true
         }
         .alert("Enjoying the app?", isPresented: $showingKofiPrompt) {
             Button("Not now", role: .cancel) {
