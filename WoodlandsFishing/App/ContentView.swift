@@ -7,7 +7,7 @@ struct ContentView: View {
     @State private var showingOnboarding = false
     @State private var showingKofiPrompt = false
     @State private var showingTipJar = false
-    @State private var showingWinter = false
+    @State private var presentedSeason: Season?
     @State private var hasRecordedLaunch = false
 
     var body: some View {
@@ -25,22 +25,25 @@ struct ContentView: View {
         .sheet(isPresented: $showingOnboarding, onDismiss: {
             userData.hasSeenOnboarding = true
             // A winter deep link that arrived during onboarding opens now.
-            if store.pendingWinterEvent { showingWinter = true }
+            presentPendingSeason()
         }) {
             OnboardingSheet()
         }
         .sheet(isPresented: $showingTipJar) {
             TipJarView()
         }
-        .sheet(isPresented: $showingWinter, onDismiss: {
-            store.pendingWinterEvent = false
-        }) {
-            WinterSpotsView()
+        .sheet(item: $presentedSeason, onDismiss: {
+            store.pendingSeasonID = nil
+        }) { season in
+            SeasonCollectionView(season: season)
         }
-        .onChange(of: store.pendingWinterEvent) { _, newValue in
-            guard newValue, !showingOnboarding else { return }
-            showingTipJar = false
-            showingWinter = true
+        .onChange(of: store.pendingSeasonID) { _, _ in
+            guard !showingOnboarding else { return }
+            presentPendingSeason()
+        }
+        .onChange(of: store.seasons) { _, _ in
+            // A deep link can arrive before Seasons.json has loaded.
+            if presentedSeason == nil, !showingOnboarding { presentPendingSeason() }
         }
         .alert("Enjoying the app?", isPresented: $showingKofiPrompt) {
             Button("Not now", role: .cancel) {
@@ -80,5 +83,12 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private func presentPendingSeason() {
+        guard let id = store.pendingSeasonID,
+              let season = store.seasons.first(where: { $0.id == id }) else { return }
+        showingTipJar = false
+        presentedSeason = season
     }
 }

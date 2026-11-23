@@ -1,0 +1,64 @@
+{
+  "seasons": [
+    {
+      "id": "winter",
+      "title": "Winter Crappie Spots",
+      "kicker": "Winter season",
+      "subtitle": "{count} public waters around The Woodlands and Lake Conroe where crappie are on the list.",
+      "start": "12-01",
+      "end": "02-29",
+      "label": "Dec 1 – Feb 28",
+      "species": [
+        "crappie"
+      ],
+      "icon": "snowflake",
+      "tips": [
+        {
+          "icon": "snowflake",
+          "text": "Crappie keep feeding in cold water, so they are a good winter target when bass slow down."
+        },
+        {
+          "icon": "tortoise",
+          "text": "Fish slowly: small jigs or minnows near brush, docks and deeper water."
+        },
+        {
+          "icon": "sun.max",
+          "text": "The warmest hours of the day are often the best bite. Each spot's weather card shows live temperature, wind and pressure."
+        }
+      ],
+      "footnote": "These are the spots in this guide that list crappie. Always check each spot's permits and posted rules."
+    },
+    {
+      "id": "whitebass",
+      "title": "White Bass Run",
+      "kicker": "Late-winter run",
+      "subtitle": "{count} spots on and along Spring Creek where white bass are on the list.",
+      "start": "01-15",
+      "end": "03-31",
+      "label": "Jan 15 – Mar 31",
+      "species": [
+        "whiteBass"
+      ],
+      "icon": "water.waves",
+      "tips": [
+        {
+          "icon": "arrow.up.right",
+          "text": "In late winter, white bass leave the lakes and push up creeks to spawn. The run often starts in January or February."
+        },
+        {
+          "icon": "cloud.rain",
+          "text": "Warming water and rising flow after a good rain are what set it off, so watch for a warm spell after rain."
+        },
+        {
+          "icon": "calendar",
+          "text": "Without a big rain the run can stretch out over one to two months, so keep checking."
+        },
+        {
+          "icon": "figure.walk",
+          "text": "Creek access is bank, wade or kayak. Check each spot's access and license rules before you go."
+        }
+      ],
+      "footnote": "These are the spots in this guide that list white bass. Run timing changes every year with rain and water temperature."
+    }
+  ]
+}

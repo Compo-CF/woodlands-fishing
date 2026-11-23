@@ -33,11 +33,17 @@ struct WoodlandsFishingApp: App {
                     .onOpenURL { url in
                         // Handles woodlandsfishing://spot/<uuid> from external
                         // sources like Messages, Notes, or another app.
-                        // woodlandsfishing://winter opens the Winter Crappie
-                        // Spots collection (App Store In-App Event deep link).
+                        // woodlandsfishing://season/<id> opens a seasonal
+                        // collection (App Store In-App Event deep link);
+                        // ://winter is the 2.1 link for the "winter" season.
                         guard url.scheme == "woodlandsfishing" else { return }
                         if url.host == "winter" {
-                            store.pendingWinterEvent = true
+                            store.pendingSeasonID = "winter"
+                            return
+                        }
+                        if url.host == "season" {
+                            let id = url.lastPathComponent
+                            if !id.isEmpty, id != "/" { store.pendingSeasonID = id }
                             return
                         }
                         guard url.host == "spot" else { return }

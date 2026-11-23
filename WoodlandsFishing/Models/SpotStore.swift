@@ -14,10 +14,23 @@ final class SpotStore {
     /// consumption so subsequent identical links still trigger navigation.
     var pendingDeepLinkedSpotID: UUID?
 
-    /// Set by the `woodlandsfishing://winter` deep link (App Store In-App
-    /// Event) or the Winter banner on the Spots tab. ContentView presents
-    /// WinterSpotsView and clears it.
-    var pendingWinterEvent: Bool = false
+    /// Seasonal collections (In-App Events) from Seasons.json: bundled seed,
+    /// cached remote copy, then GitHub Pages, exactly like the spots.
+    var seasons: [Season] = []
+
+    /// Set by `woodlandsfishing://season/<id>` (or the legacy `://winter`) and
+    /// by the seasonal banners on the Spots tab. ContentView presents
+    /// SeasonCollectionView for it and clears it on dismiss.
+    var pendingSeasonID: String?
+
+    /// Seasons whose window includes today, in file order.
+    var activeSeasons: [Season] { seasons.filter { $0.isActive() } }
+
+    private let seasonsRemoteURL = URL(string: "https://compo-cf.github.io/woodlands-fishing/Seasons.json")!
+    private var seasonsCacheURL: URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("Seasons.cache.json")
+    }
 
     /// Remote source of truth. Edit `docs/Spots.json` in the repo, push to main,
     /// and GitHub Pages serves the update — every app picks it up on next launch.
@@ -32,7 +45,30 @@ final class SpotStore {
 
     init() {
         loadLocalFirst()
+        loadSeasonsLocal()
         Task { await refreshFromRemote() }
+        Task { await refreshSeasonsFromRemote() }
+    }
+
+    private func loadSeasonsLocal() {
+        if let cached = try? Data(contentsOf: seasonsCacheURL), let decoded = Season.decode(cached) {
+            seasons = decoded
+        } else if let url = Bundle.main.url(forResource: "Seasons", withExtension: "json"),
+                  let data = try? Data(contentsOf: url), let decoded = Season.decode(data) {
+            seasons = decoded
+        }
+    }
+
+    @MainActor
+    func refreshSeasonsFromRemote() async {
+        var request = URLRequest(url: seasonsRemoteURL)
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        request.timeoutInterval = 10
+        guard let (data, response) = try? await URLSession.shared.data(for: request),
+              (response as? HTTPURLResponse)?.statusCode == 200,
+              let decoded = Season.decode(data), !decoded.isEmpty else { return }
+        seasons = decoded
+        try? data.write(to: seasonsCacheURL, options: .atomic)
     }
 
     /// Synchronously load the best local data we have so the UI is never empty:

@@ -18,11 +18,15 @@ struct ListTabView: View {
         @Bindable var store = store
         NavigationStack(path: $navigationPath) {
             List {
-                if WinterSeason.isActive() && store.filter.searchText.isEmpty {
-                    let count = WinterSeason.spots(from: store.spots).count
-                    if count > 0 {
-                        Section {
-                            WinterBanner(count: count) { store.pendingWinterEvent = true }
+                if store.filter.searchText.isEmpty && !store.activeSeasons.isEmpty {
+                    Section {
+                        ForEach(store.activeSeasons) { season in
+                            let count = season.spots(from: store.spots).count
+                            if count > 0 {
+                                SeasonBanner(season: season, count: count) {
+                                    store.pendingSeasonID = season.id
+                                }
+                            }
                         }
                     }
                 }
