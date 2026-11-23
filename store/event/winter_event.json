@@ -1,0 +1,24 @@
+{
+  "_doc": "In-App Event spec for ~/Neatly/scripts/asc/app_event.py. Times UTC (08:00Z = 2am Central). Max 31 days; publishStart <= 14 days before eventStart. Content: 2.1 WinterSpotsView (crappie spots from Spots.json), banner Dec-Feb, deep link woodlandsfishing://winter.",
+  "app_id": "6773332173",
+  "referenceName": "Winter Crappie Spots 2026",
+  "badge": "NEW_SEASON",
+  "purpose": "APPROPRIATE_FOR_ALL_USERS",
+  "priority": "HIGH",
+  "purchaseRequirement": "NO_COST_ASSOCIATED",
+  "primaryLocale": "en-US",
+  "deepLink": "woodlandsfishing://winter",
+  "publishStart": "2026-11-28T14:00:00Z",
+  "eventStart": "2026-12-05T08:00:00Z",
+  "eventEnd": "2027-01-04T08:00:00Z",
+  "localization": {
+    "locale": "en-US",
+    "name": "Winter Crappie Spots",
+    "shortDescription": "15 crappie waters for the cold months",
+    "longDescription": "A winter list of 15 public lakes and ponds that hold crappie, with cold-water tips and live weather at each spot."
+  },
+  "media": {
+    "EVENT_CARD": "winter_card_1920x1080.png",
+    "EVENT_DETAILS_PAGE": "winter_details_1080x1920.png"
+  }
+}
