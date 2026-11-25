@@ -103,7 +103,7 @@ struct TipJarView: View {
         VStack(spacing: 8) {
             Text("Tip options aren't available right now.")
                 .font(.subheadline.weight(.medium))
-            Text("Check your connection or try again in a moment. Ko-fi is still available from the About screen.")
+            Text("Check your connection or try again in a moment.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
